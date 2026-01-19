@@ -1,0 +1,946 @@
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Navbar from './components/Navbar';
+import ProjectCard from './components/ProjectCard';
+import PhotoGallery from './components/PhotoGallery';
+import ResearchShowcase from './components/ResearchShowcase';
+import Timeline from './components/Timeline';
+import Footer from './components/Footer';
+import Hero3D from './components/Hero3D';
+
+// Import animated background components - lazy load for performance
+const MatrixRain = lazy(() => import('./components/MatrixRain'));
+const AnimatedBackground = lazy(() => import('./components/AnimatedBackground'));
+const ParticleField = lazy(() => import('./components/ParticleField'));
+
+// Import generated visual assets
+import heroVisual from './assets/hero-main.png';
+import portraitPlaceholder from './assets/lex6.jpeg';
+import researchVisual from './assets/research-visual.png';
+import communityVisual from './assets/community-visual.png';
+import projectsVisual from './assets/projects-visual.png';
+import galleryHero from './assets/gallery-hero.png';
+import hobbiesVisual from './assets/hobbies-visual.png';
+import recyclensPreview from './assets/recyc.png';
+import handshakePreview from './assets/handshake.png';
+import lumeoPreview from './assets/lumeo.png';
+import zerocostPreview from './assets/zerocost.png';
+
+// Animated Name Component
+const AnimatedName = ({ name }) => {
+    const letters = name.split('');
+    
+    const container = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.08,
+                delayChildren: 0.3
+            }
+        }
+    };
+    
+    const letterAnimation = {
+        hidden: { 
+            opacity: 0, 
+            y: 50,
+            rotateX: -90,
+            scale: 0.5
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            scale: 1,
+            transition: {
+                type: "spring",
+                damping: 12,
+                stiffness: 200
+            }
+        }
+    };
+    
+    const shimmer = {
+        initial: { backgroundPosition: "-200% center" },
+        animate: {
+            backgroundPosition: "200% center",
+            transition: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 3,
+                ease: "linear"
+            }
+        }
+    };
+    
+    return (
+        <motion.div
+            className="inline-flex flex-wrap justify-center perspective-1000"
+            variants={container}
+            initial="hidden"
+            animate="visible"
+        >
+            {letters.map((letter, index) => (
+                <motion.span
+                    key={index}
+                    variants={letterAnimation}
+                    className={`inline-block ${letter === ' ' ? 'w-4 md:w-6' : ''}`}
+                    style={{
+                        background: letter !== ' ' 
+                            ? 'linear-gradient(90deg, #00d4ff, #ffd700, #00ff88, #00d4ff, #ffd700)'
+                            : 'transparent',
+                        backgroundSize: '200% auto',
+                        WebkitBackgroundClip: letter !== ' ' ? 'text' : 'unset',
+                        WebkitTextFillColor: letter !== ' ' ? 'transparent' : 'unset',
+                        backgroundClip: letter !== ' ' ? 'text' : 'unset',
+                        textShadow: letter !== ' ' ? '0 0 30px rgba(0, 212, 255, 0.5)' : 'none'
+                    }}
+                    whileHover={{
+                        scale: 1.2,
+                        y: -10,
+                        transition: { type: "spring", stiffness: 500 }
+                    }}
+                >
+                    <motion.span
+                        style={{
+                            display: 'inline-block',
+                            background: letter !== ' ' 
+                                ? 'linear-gradient(90deg, #00d4ff, #ffd700, #00ff88, #00d4ff)'
+                                : 'transparent',
+                            backgroundSize: '300% auto',
+                            WebkitBackgroundClip: letter !== ' ' ? 'text' : 'unset',
+                            WebkitTextFillColor: letter !== ' ' ? 'transparent' : 'unset',
+                            backgroundClip: letter !== ' ' ? 'text' : 'unset',
+                        }}
+                        animate={{
+                            backgroundPosition: ['0% center', '100% center', '0% center'],
+                        }}
+                        transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: index * 0.1
+                        }}
+                    >
+                        {letter === ' ' ? '\u00A0' : letter}
+                    </motion.span>
+                </motion.span>
+            ))}
+        </motion.div>
+    );
+};
+
+// Project data
+const projects = [
+    {
+        id: 1,
+        title: "ZeroCost",
+        description: "Full-stack platform that aggregates free food, events, and community opportunities on an interactive map.",
+        tech: [],
+        github: "https://github.com/PaulAdutwum/ZeroCost",
+        image: zerocostPreview,
+        featured: false
+    },
+    {
+        id: 2,
+        title: "RecycLens",
+        description: "Real-time computer vision platform that classifies waste into 12 material categories using a custom-trained CNN. Built with PyTorch, FastAPI, and Next.js to transform camera input into actionable recycling guidance.",
+        tech: [],
+        github: "https://github.com/PaulAdutwum/RecycLens",
+        image: recyclensPreview,
+        featured: false
+    },
+    {
+        id: 3,
+        title: "Lumeo AI",
+        description: "Mental health support platform with AI-powered chat, calming imagery, and personalized video recommendations.",
+        tech: [],
+        github: "https://github.com/PaulAdutwum/Lumeo_Mental_Health",
+        image: lumeoPreview,
+        featured: false
+    },
+    {
+        id: 4,
+        title: "Handshake AI",
+        description: "LLM security framework for detecting and preventing adversarial attacks on language models.",
+        tech: [],
+        github: "#",
+        image: handshakePreview,
+        featured: false
+    }
+];
+
+// Research data
+const researchPapers = [
+    {
+        id: 1,
+        title: "Ulam Words and Computational Number Theory",
+        authors: "Paul Adutwum",
+        journal: "INTEGERS: Electronic Journal of Combinatorial Number Theory",
+        year: 2024,
+        abstract: "This paper explores the computational aspects of Ulam words and their applications in number theory. We present novel algorithms for generating Ulam sequences and analyze their mathematical properties...",
+        pdf: "#",
+        citations: 12,
+        featured: true
+    },
+    {
+        id: 2,
+        title: "Machine Learning Applications in Supply Chain Optimization",
+        authors: "Paul Adutwum, et al.",
+        journal: "Journal of Operations Research",
+        year: 2023,
+        abstract: "A comprehensive study on applying machine learning techniques to optimize supply chain operations, with focus on predictive analytics and real-time decision making...",
+        pdf: "#",
+        citations: 8,
+        featured: false
+    }
+];
+
+// Extracurriculars data
+const extracurricularsData = [
+    {
+        id: 1,
+        title: "Bonner Racial Justice Fellow | STEM Educator",
+        organization: "Tree Street Youth",
+        location: "Lewiston, ME",
+        icon: "🎓",
+        highlights: [
+            "Lead weekly STEM workshops for high school students (primarily refugees/immigrants), utilizing Arduino kits to demystify engineering",
+            "Foster confidence in technical fields for underrepresented youth, bridging the 'digital divide' through hands-on education"
+        ]
+    },
+    {
+        id: 2,
+        title: "Co-President",
+        organization: "African Student Association (ASA)",
+        location: "Bates College",
+        icon: "🌍",
+        highlights: [
+            "Orchestrate campus-wide programming to celebrate African heritage and identity",
+            "Organize forums and hackathons to discuss the role of technology in the African diaspora"
+        ]
+    },
+    {
+        id: 3,
+        title: "Founder & Program Lead",
+        organization: "Tech Elevate",
+        location: "Accra, Ghana & Remote",
+        icon: "🚀",
+        highlights: [
+            "Established a mentorship pipeline connecting 100+ Ghanaian students with resources in Data Structures & System Design",
+            "Achieved an 85% placement rate for participants in technical internships through targeted mock interview workshops"
+        ]
+    },
+    {
+        id: 4,
+        title: "Teaching Assistant (DCS 109)",
+        organization: "Intro to Computing",
+        location: "Bates College",
+        icon: "💻",
+        highlights: [
+            "Lead weekly laboratory sessions, guiding students through fundamental Python programming concepts",
+            "Assist students in troubleshooting logic errors and understanding algorithmic thinking"
+        ]
+    },
+    {
+        id: 5,
+        title: "Captain & Member",
+        organization: "Intramural Soccer Club",
+        location: "Bates College",
+        icon: "⚽",
+        highlights: [
+            "Captain diverse teams of students in weekly matches, fostering camaraderie and physical wellness",
+            "Practice communication and quick decision-making in a high-energy team environment"
+        ]
+    },
+    {
+        id: 6,
+        title: "LinkedIn Inspire Day Participant",
+        organization: "Professional Development",
+        location: "LinkedIn",
+        icon: "💼",
+        highlights: [
+            "Selected to participate in leadership development workshops",
+            "Networking with industry professionals to refine career strategies in technology"
+        ]
+    }
+];
+
+// Photo gallery data
+const galleryImages = [
+    {
+        id: 1,
+        src: "https://kimi-web-img.moonshot.cn/img/cdn.pixabay.com/eb0b8b95b734dda727238ef1b12e8b728e195267.jpg",
+        category: "Ghana",
+        title: "Ghana Heritage",
+        description: "Traditional Ghanaian architecture and cultural elements"
+    },
+    {
+        id: 2,
+        src: galleryHero,
+        category: "Bates College",
+        title: "Academic Journey",
+        description: "From Ghana to Maine: Pursuing excellence in STEM"
+    },
+    {
+        id: 3,
+        src: "https://kimi-web-img.moonshot.cn/img/img.freepik.com/44a2b20af9464daee0df22745e55f2f4b56d4a4f.jpg",
+        category: "Research",
+        title: "Mathematical Research",
+        description: "Exploring computational number theory and Ulam sequences"
+    },
+    {
+        id: 4,
+        src: "https://kimi-web-img.moonshot.cn/img/wpvip.edutopia.org/c2645986eb417d79f9262930ec8f6eee1427d302.jpg",
+        category: "Community",
+        title: "Tech Education",
+        description: "Empowering youth through technology education"
+    },
+    {
+        id: 5,
+        src: communityVisual,
+        category: "Tree Street Youth",
+        title: "Bonner Fellowship",
+        description: "Community leadership and youth mentoring"
+    },
+    {
+        id: 6,
+        src: "https://kimi-web-img.moonshot.cn/img/www.collidu.com/49f2544e7c3e6ef4b9e74876d9a400c907ff5aa4.png",
+        category: "Research",
+        title: "Academic Presentations",
+        description: "Sharing research findings with the academic community"
+    }
+];
+
+// Awards data
+const awards = [
+    {
+        id: "award-1",
+        title: "Dana Scholar Award",
+        institution: "Bates College",
+        year: "2027",
+        description:
+            "One of just 20 students in the Class of 2027 selected for this prestigious award, honoring exceptional academic achievement, proven leadership potential, and dedicated service to the Bates community."
+    },
+    {
+        id: "award-2",
+        title: "Dean's List",
+        institution: "Bates College",
+        year: "All Semesters",
+        description:
+            "Recognition for maintaining a GPA above 3.9 consistently throughout academic career."
+    },
+    {
+        id: "award-3",
+        title: "Most Outstanding Community Engagement by a First Year Student",
+        institution: "Bates College",
+        year: "2024",
+        description:
+            "Awarded for spearheading student-led community service in Lewiston's urban neighborhoods and for building volunteer programs that connect Bates students with local initiatives."
+    },
+    {
+        id: "award-4",
+        title: "STEM Scholar",
+        institution: "Bates College",
+        year: "2024-2025",
+        description:
+            "Merit-based scholarship awarded for outstanding academic achievement and potential for continued success."
+    }
+];
+
+// Hobbies data - with videos from public folder
+const hobbies = [
+    {
+        id: 1,
+        title: "Basketball",
+        icon: "🏀",
+        video: "/basketball.mp4"
+    },
+    {
+        id: 2,
+        title: "Music",
+        icon: "🎵",
+        video: "/music.mp4"
+    },
+    {
+        id: 3,
+        title: "Soccer",
+        icon: "⚽",
+        video: "/soccer.mp4"
+    }
+];
+
+function App() {
+    const [activeSection, setActiveSection] = useState('hero');
+    const [isLoading, setIsLoading] = useState(true);
+    const [scrollProgress, setScrollProgress] = useState(0);
+    // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora'
+    const [backgroundMode, setBackgroundMode] = useState('matrix');
+    
+    const heroRef = useRef(null);
+    const aboutRef = useRef(null);
+    const researchRef = useRef(null);
+    const projectsRef = useRef(null);
+    const awardsRef = useRef(null);
+    const communityRef = useRef(null);
+    const galleryRef = useRef(null);
+    const hobbiesRef = useRef(null);
+    
+    const sectionRefs = {
+        hero: heroRef,
+        about: aboutRef,
+        research: researchRef,
+        projects: projectsRef,
+        awards: awardsRef,
+        community: communityRef,
+        gallery: galleryRef,
+        hobbies: hobbiesRef
+    };
+    
+    useEffect(() => {
+        // Initialize scroll indicator
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            setScrollProgress(progress);
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        
+        // Initialize typewriter effect
+        setTimeout(() => {
+            setIsLoading(false);
+            
+            // Initialize Typed.js for hero name
+            if (typeof Typed !== 'undefined') {
+                const typed = new Typed('#typed-name', {
+                    strings: ['Paul Adutwum'],
+                    typeSpeed: 100,
+                    backSpeed: 50,
+                    backDelay: 2000,
+                    loop: false,
+                    showCursor: true,
+                    cursorChar: '|'
+                });
+            }
+        }, 1000);
+        
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    
+    useEffect(() => {
+        // Update scroll indicator
+        const indicator = document.getElementById('scrollIndicator');
+        if (indicator) {
+            indicator.style.transform = `scaleX(${scrollProgress / 100})`;
+        }
+    }, [scrollProgress]);
+    
+    const scrollToSection = (sectionId) => {
+        const ref = sectionRefs[sectionId];
+        if (ref?.current) {
+            ref.current.scrollIntoView({ behavior: 'smooth' });
+            setActiveSection(sectionId);
+        }
+    };
+    
+    const heroVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
+    };
+    
+    const sectionVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
+    
+    // Removed loading screen for faster initial paint
+    // Content renders immediately now
+    
+    // Check if mobile for performance optimization
+    const [isMobile, setIsMobile] = useState(false);
+    
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+    
+    return (
+        <div className="min-h-screen bg-[#0a0a0a] text-white relative">
+            {/* Dynamic Animated Backgrounds - Only show on desktop for performance */}
+            {!isMobile && (
+                <Suspense fallback={<div className="fixed inset-0 bg-[#0a0a0a]" />}>
+                    {backgroundMode === 'matrix' && <MatrixRain opacity={0.08} />}
+                    {backgroundMode === 'particles' && <ParticleField />}
+                    {(backgroundMode === 'orbs' || backgroundMode === 'mesh' || backgroundMode === 'aurora') && (
+                        <AnimatedBackground variant={backgroundMode} />
+                    )}
+                </Suspense>
+            )}
+            
+            
+            {/* Main Content - above background */}
+            <div className="relative z-10">
+            <Navbar 
+                activeSection={activeSection} 
+                scrollToSection={scrollToSection} 
+            />
+            
+            {/* New 3D Hero Section with mobile-first design */}
+            <section ref={heroRef} id="hero">
+                <Hero3D scrollToSection={scrollToSection} />
+            </section>
+            
+            {/* About Section */}
+            <section ref={aboutRef} id="about" className="py-20 bg-[#1a1a1a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+                            About Me
+                        </h2>
+                        
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div className="order-2 md:order-1">
+                                <div className="relative">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-[#00d4ff] to-[#ffd700] rounded-full blur-lg opacity-30"></div>
+                                    <img 
+                                        src={portraitPlaceholder} 
+                                        alt="Paul Adutwum" 
+                                        className="relative rounded-full w-80 h-80 mx-auto object-cover border-4 border-[#00d4ff] glow-effect"
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className="order-1 md:order-2">
+                                <h3 className="text-3xl font-bold mb-6 text-[#00d4ff]">
+                                    Hi there! <span className="inline-block animate-bounce">👋</span>
+                                </h3>
+                                
+                                <div className="space-y-5 text-[#c0c0c0] leading-relaxed text-lg">
+                                    <p>
+                                        Welcome to my portfolio! My name is <span className="text-[#00d4ff] font-semibold">Paul Adutwum</span>. 
+                                        I'm currently in the United States, but I'm originally from <span className="text-[#00d4ff]">Ghana</span>.
+                                    </p>
+                                    
+                                    <p>
+                                        I'm a first-generation student studying <span className="text-[#00d4ff]">mathematics</span> and{' '}
+                                        <span className="text-[#00d4ff]">physics</span> at <span className="text-[#00d4ff]">Bates College</span>.
+                                    </p>
+                                    
+                                    <p>
+                                        I enjoy figuring out how things work, and right now I'm exploring{' '}
+                                        <span className="text-[#00d4ff]">AI</span> and <span className="text-[#00d4ff]">embedded systems</span>{' '}
+                                        through personal projects.
+                                    </p>
+                                    
+                                    <p className="pt-4 text-[#c0c0c0]">
+                                        I'm always happy to connect, so feel free to reach out! 🚀
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Research Section */}
+            <section ref={researchRef} id="research" className="py-20 bg-[#0a0a0a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+                            Research
+                        </h2>
+                        
+                        <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 border border-[#333]">
+                            {/* Paper Title */}
+                            <div className="mb-8">
+                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                                    Distributions of Ulam Words Up to Length 30
+                                </h3>
+                                <p className="text-[#a0a0a0] text-sm">
+                                    Paul Adutwum, Hopper Clark, Ro Emerson, Alexandra Sheydvasser, Arseniy Sheydvasser, Axelle Tougouma
+                                </p>
+                                <p className="text-[#00d4ff]/70 text-sm mt-1">
+                                    Published in INTEGERS Journal, 2025
+                                </p>
+                            </div>
+                            
+                            {/* Personal Story */}
+                            <div className="space-y-4 text-[#c0c0c0] leading-relaxed text-lg mb-8">
+                                <p>
+                                    In my first year at Bates College, I worked as a research assistant with{' '}
+                                    <span className="text-[#00d4ff]">Professor Senia Sheydvasser</span> in the math department. 
+                                    I was interested in the computational side of math, but I hadn’t taken many advanced 
+                                    classes or done formal research before. Joining a project focused on abstract 
+                                    combinatorics and number theory — especially the <span className="text-[#00d4ff]">Gibbs conjecture</span> and{' '}
+                                    <span className="text-[#00d4ff]">Ulam sequences</span> — felt intimidating at first, 
+                                    and I had a lot to learn.
+                                </p>
+                                
+                                <p>
+                                    At first, I spent a lot of time learning new ideas in set combinatorics and additive 
+                                    number theory, and it took a while for everything to make sense. With Professor 
+                                    Sheydvasser’s guidance, I got better at asking questions, reading technical papers, 
+                                    and working with ideas that were new to me. Facing these challenges helped me grow 
+                                    and become more confident in tackling abstract math problems.
+                                </p>
+                                
+                                <p>
+                                    As the year went on, I began making larger contributions, especially to the 
+                                    computational parts of the project. I worked on expanding Ulam sequences of the 
+                                    form U(1, x) and on improving and extending datasets to find new patterns at 
+                                    larger scales. I refined and optimized the Gibbs algorithm used to compute Ulam 
+                                    numbers, enabling us to generate over 1 million terms, more than 60 times the 
+                                    previous amount. This made it possible to explore large-scale patterns and 
+                                    structures in Ulam sequences that hadn’t been studied before.
+                                </p>
+                                
+                                <p>
+                                    This work led to a published paper, which was my first experience with academic 
+                                    research and publication. More importantly, it changed how I think about math. I 
+                                    learned to tackle open-ended problems, combine theory with computation, and keep 
+                                    going even when things were uncertain. Doing research as a freshman made me want 
+                                    to keep exploring advanced topics in math and computer science, and it still 
+                                    shapes how I learn and solve problems today.
+                                </p>
+                            </div>
+                            
+                            {/* Buttons */}
+                            <div className="flex flex-wrap gap-4">
+                                <a 
+                                    href="https://math.colgate.edu/~integers/z102/z102.pdf" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#00d4ff] text-black font-semibold rounded-lg hover:bg-[#00d4ff]/80 transition-all hover:scale-105"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    Read the Paper
+                                </a>
+                                <a 
+                                    href="https://math.colgate.edu/~integers/z102/z102.pdf" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-6 py-3 border border-[#00d4ff] text-[#00d4ff] font-semibold rounded-lg hover:bg-[#00d4ff]/10 transition-all hover:scale-105"
+                                >
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                    View on INTEGERS
+                                </a>
+                            </div>
+                        </div>
+                        
+                        {/* RAG Research Project */}
+                        <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 border border-[#333] mt-8">
+                            {/* Project Title */}
+                            <div className="mb-8">
+                                <div className="inline-block px-3 py-1 bg-[#00ff88]/20 text-[#00ff88] text-sm rounded-full mb-4">
+                                    Winter 2025 • Coming Soon
+                                </div>
+                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                                    RAG-Powered Academic Advising System
+                                </h3>
+                                <p className="text-[#a0a0a0] text-sm">
+                                    Digital and Computational Studies Department, Bates College
+                                </p>
+                                <p className="text-[#00d4ff]/70 text-sm mt-1">
+                                    Research Assistant — June 2025 – August 2025
+                                </p>
+                            </div>
+                            
+                            {/* Personal Story */}
+                            <div className="space-y-4 text-[#c0c0c0] leading-relaxed text-lg mb-8">
+                                <p>
+                                    During the winter of my sophomore year, the <span className="text-[#00d4ff]">Digital and Computational Studies</span> program 
+                                    at Bates was transitioning from a minor into a full major, and I was taking a web development 
+                                    course with <span className="text-[#00d4ff]">Professor Barry Lawson</span> right in the middle of that change. 
+                                    The department was suddenly receiving a flood of questions from prospective and current students 
+                                    about requirements, pathways, and course planning, and traditional advising methods were no longer enough.
+                                </p>
+                                
+                                <p>
+                                    After several brainstorming sessions, we decided to design a system that could answer these 
+                                    questions automatically using the department's own materials. That summer, I worked as a 
+                                    Research Assistant to build a <span className="text-[#00d4ff]">Retrieval-Augmented Generation (RAG)</span> pipeline 
+                                    that transformed over 5,000 institutional documents into a searchable knowledge base using 
+                                    <span className="text-[#00d4ff]"> vector embeddings</span>. I then deployed the system as a 
+                                    <span className="text-[#00d4ff]"> FastAPI microservice</span> so students could receive accurate, 
+                                    context-aware responses.
+                                </p>
+                                
+                                <p className="text-[#ffd700] italic">
+                                    More on this project coming soon!
+                                </p>
+                            </div>
+                            
+                            {/* Button */}
+                            <div className="flex flex-wrap gap-4">
+                                <a 
+                                    href="https://github.com/PaulAdutwum" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#00d4ff] text-black font-semibold rounded-lg hover:bg-[#00d4ff]/80 transition-all hover:scale-105"
+                                >
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                    </svg>
+                                    View My GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Projects Section */}
+            <section ref={projectsRef} id="projects" className="py-20 bg-[#1a1a1a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+                            Personal Projects
+                        </h2>
+                        
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {projects.map((project, index) => (
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <ProjectCard project={project} />
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Awards Section */}
+            <section ref={awardsRef} id="awards" className="py-20 bg-[#0a0a0a]">
+                <div className="container mx-auto px-4">
+                    <motion.div
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 gradient-text">
+                            Honors & Awards
+                        </h2>
+                        <p className="text-center text-[#a0a0a0] max-w-3xl mx-auto mb-12">
+                            Recognition for academic excellence and leadership.
+                        </p>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {awards.map((award, index) => (
+                                <motion.div
+                                    key={award.id}
+                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.08 }}
+                                    viewport={{ once: true }}
+                                    whileHover={{ y: -4, boxShadow: '0 10px 30px rgba(0, 212, 255, 0.08)' }}
+                                >
+                                    <div className="flex items-start justify-between gap-4 mb-3">
+                                        <h3 className="text-lg md:text-xl font-bold text-[#00d4ff]">
+                                            {award.title}
+                                        </h3>
+                                        <span className="text-xs md:text-sm text-[#ffd700] whitespace-nowrap">
+                                            {award.year}
+                                        </span>
+                                    </div>
+                                    <p className="text-white font-medium mb-2">
+                                        {award.institution}
+                                    </p>
+                                    <p className="text-[#a0a0a0] text-sm leading-relaxed">
+                                        {award.description}
+                                    </p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Extracurriculars Section */}
+            <section ref={communityRef} id="community" className="py-20 bg-[#0a0a0a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+                            Extracurriculars
+                        </h2>
+                        
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {extracurricularsData.map((item, index) => (
+                                <motion.div
+                                    key={item.id}
+                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    whileHover={{ y: -5, boxShadow: '0 10px 40px rgba(0, 212, 255, 0.1)' }}
+                                >
+                                    {/* Icon */}
+                                    <div className="text-4xl mb-4">{item.icon}</div>
+                                    
+                                    {/* Title */}
+                                    <h3 className="text-lg font-bold text-[#00d4ff] mb-1">
+                                        {item.title}
+                                    </h3>
+                                    
+                                    {/* Organization */}
+                                    <p className="text-white font-medium mb-1">
+                                        {item.organization}
+                                    </p>
+                                    
+                                    {/* Location */}
+                                    <p className="text-[#888] text-sm mb-4">
+                                        📍 {item.location}
+                                    </p>
+                                    
+                                    {/* Highlights */}
+                                    <ul className="space-y-2">
+                                        {item.highlights.map((highlight, i) => (
+                                            <li key={i} className="text-[#a0a0a0] text-sm flex items-start gap-2">
+                                                <span className="text-[#00d4ff] mt-1">•</span>
+                                                <span>{highlight}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Photo Gallery Section */}
+            <section ref={galleryRef} id="gallery" className="py-20 bg-[#1a1a1a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+                            Photo Experience Gallery
+                        </h2>
+                        
+                        <PhotoGallery images={galleryImages} />
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Hobbies Section */}
+            <section ref={hobbiesRef} id="hobbies" className="py-16 bg-[#0a0a0a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-4xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 gradient-text">
+                            Hobbies & Interests
+                        </h2>
+                        
+                        {/* Compact video grid */}
+                        <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+                            {hobbies.map((hobby, index) => (
+                                <motion.div
+                                    key={hobby.id}
+                                    className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300 group"
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    viewport={{ once: true }}
+                                    whileHover={{ y: -5, scale: 1.02 }}
+                                >
+                                    {/* Video container - square aspect ratio */}
+                                    <div className="aspect-square overflow-hidden relative">
+                                        <video 
+                                            src={hobby.video}
+                                            className="w-full h-full object-cover"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        />
+                                        {/* Hover overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    </div>
+                                    
+                                    {/* Compact label */}
+                                    <div className="p-2 sm:p-3 text-center">
+                                        <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                                            <span className="text-lg sm:text-xl">{hobby.icon}</span>
+                                            <h3 className="text-xs sm:text-sm font-medium text-[#00d4ff]">
+                                                {hobby.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                        
+                        {/* More coming soon text */}
+                        <p className="text-center text-[#666] text-sm mt-6 italic">
+                            More hobbies coming soon...
+                        </p>
+                    </motion.div>
+                </div>
+            </section>
+            
+            <Footer />
+            </div>
+        </div>
+    );
+}
+
+export default App;

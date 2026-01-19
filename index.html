@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paul Adutwum - Researcher | Systems Engineer | Community Builder</title>
+    <meta name="description" content="Portfolio of Paul Adutwum - From Ghana to Maine, pursuing excellence in computational number theory, systems engineering, and community empowerment." />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'cyber-dark': '#0a0a0a',
+              'cyber-gray': '#1a1a1a',
+              'cyber-blue': '#00d4ff',
+              'cyber-gold': '#ffd700',
+              'cyber-green': '#00ff88',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Preload critical fonts for faster rendering -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/assets/rocket.jpg" as="image">
+    <link rel="preload" href="/assets/lex6.jpeg" as="image">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+        font-family: 'Outfit', 'Space Grotesk', sans-serif;
+        background: #0a0a0a;
+        color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+      code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #00d4ff, #ffd700);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #00b8e6, #e6c200);
+      }
+      
+      /* Loading screen - optimized for fast transition */
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      
+      #loading-screen.hidden {
+            opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      
+      .loader-container {
+        position: relative;
+        width: 80px;
+        height: 80px;
+      }
+      
+      .loader {
+        width: 80px;
+        height: 80px;
+        border: 3px solid transparent;
+        border-top-color: #00d4ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      .loader::before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border: 3px solid transparent;
+        border-top-color: #ffd700;
+        border-radius: 50%;
+        animation: spin 1.5s linear infinite reverse;
+      }
+      
+      .loader::after {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border: 3px solid transparent;
+        border-top-color: #00ff88;
+        border-radius: 50%;
+        animation: spin 2s linear infinite;
+      }
+      
+      .loader-text {
+        margin-top: 24px;
+        color: #a0a0a0;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Smooth scroll */
+      html {
+        scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-screen">
+      <div class="loader-container">
+        <div class="loader"></div>
+                </div>
+      <div class="loader-text">Loading Experience</div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/main.jsx"></script>
+    <script>
+      // Optimized loading - hide as fast as possible
+      const hideLoader = () => {
+        const loader = document.getElementById('loading-screen');
+        if (loader && !loader.classList.contains('hidden')) {
+          loader.classList.add('hidden');
+          setTimeout(() => loader.remove(), 300);
+        }
+      };
+      
+      // Hide immediately when DOM is interactive
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        hideLoader();
+      } else {
+        document.addEventListener('DOMContentLoaded', hideLoader);
+      }
+      
+      // Also hide on full load
+      window.addEventListener('load', hideLoader);
+      
+      // Fallback: hide after 400ms max (reduced from 500ms)
+      setTimeout(hideLoader, 400);
+    </script>
+</body>
+</html>
