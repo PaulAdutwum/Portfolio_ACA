@@ -4,36 +4,35 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = ({ activeSection, scrollToSection }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    
+
     const navItems = [
         { id: 'hero', label: 'Home' },
         { id: 'about', label: 'About' },
         { id: 'research', label: 'Research' },
         { id: 'projects', label: 'Projects' },
         { id: 'community', label: 'Community' },
-        { id: 'gallery', label: 'Gallery' },
+        { id: 'contact', label: 'Contact' },
         { id: 'hobbies', label: 'Interests' }
     ];
-    
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
-        
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-    
+
     const handleNavClick = (sectionId) => {
         scrollToSection(sectionId);
         setIsMobileMenuOpen(false);
     };
-    
+
     return (
-        <motion.nav 
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                isScrolled ? 'nav-blur shadow-lg' : 'bg-transparent'
-            }`}
+        <motion.nav
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'nav-blur shadow-lg' : 'bg-transparent'
+                }`}
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.5 }}
@@ -41,25 +40,24 @@ const Navbar = ({ activeSection, scrollToSection }) => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo/Name */}
-                    <motion.div 
+                    <motion.div
                         className="text-xl font-bold gradient-text cursor-pointer"
                         onClick={() => handleNavClick('hero')}
                         whileHover={{ scale: 1.05 }}
                     >
                         Paul Adutwum
                     </motion.div>
-                    
+
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
                         {navItems.map((item) => (
                             <motion.button
                                 key={item.id}
                                 onClick={() => handleNavClick(item.id)}
-                                className={`relative px-3 py-2 text-sm font-medium transition-colors ${
-                                    activeSection === item.id 
-                                        ? 'text-[#00d4ff]' 
-                                        : 'text-[#a0a0a0] hover:text-[#00d4ff]'
-                                }`}
+                                className={`relative px-3 py-2 text-sm font-medium transition-colors ${activeSection === item.id
+                                    ? 'text-[#00d4ff]'
+                                    : 'text-[#a0a0a0] hover:text-[#00d4ff]'
+                                    }`}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -76,7 +74,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                             </motion.button>
                         ))}
                     </div>
-                    
+
                     {/* Mobile Menu Button - Enhanced visibility */}
                     <motion.button
                         className="md:hidden p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#00d4ff]/50 shadow-lg shadow-[#00d4ff]/20"
@@ -84,10 +82,10 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                         whileTap={{ scale: 0.95 }}
                         whileHover={{ borderColor: '#00d4ff', boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' }}
                     >
-                        <svg 
-                            className="w-6 h-6 text-[#00d4ff]" 
-                            fill="none" 
-                            stroke="currentColor" 
+                        <svg
+                            className="w-6 h-6 text-[#00d4ff]"
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                         >
                             {isMobileMenuOpen ? (
@@ -98,7 +96,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                         </svg>
                     </motion.button>
                 </div>
-                
+
                 {/* Mobile Menu - Enhanced visibility with solid background */}
                 <AnimatePresence>
                     {isMobileMenuOpen && (
@@ -114,11 +112,10 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                                     <motion.button
                                         key={item.id}
                                         onClick={() => handleNavClick(item.id)}
-                                        className={`block w-full text-left px-4 py-3 rounded-lg transition-all font-medium ${
-                                            activeSection === item.id 
-                                                ? 'bg-[#00d4ff] text-[#0a0a0a]' 
-                                                : 'text-white hover:bg-[#1a1a1a] hover:text-[#00d4ff]'
-                                        }`}
+                                        className={`block w-full text-left px-4 py-3 rounded-lg transition-all font-medium ${activeSection === item.id
+                                            ? 'bg-[#00d4ff] text-[#0a0a0a]'
+                                            : 'text-white hover:bg-[#1a1a1a] hover:text-[#00d4ff]'
+                                            }`}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: index * 0.05 }}

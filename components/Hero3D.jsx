@@ -11,8 +11,8 @@ const SpinningRocket = () => {
             className="absolute top-20 left-4 sm:top-24 sm:left-8 z-20"
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ 
-                duration: 1, 
+            transition={{
+                duration: 1,
                 delay: 0.3,
                 type: "spring",
                 stiffness: 200
@@ -20,7 +20,7 @@ const SpinningRocket = () => {
         >
             <motion.div
                 className="relative"
-                animate={{ 
+                animate={{
                     rotate: 360,
                     y: [0, -8, 0],
                 }}
@@ -38,7 +38,7 @@ const SpinningRocket = () => {
                 }}
             >
                 {/* Glowing ring around rocket */}
-                <motion.div 
+                <motion.div
                     className="absolute -inset-2 rounded-full"
                     style={{
                         background: 'conic-gradient(from 0deg, #00d4ff, #00ff88, #ffd700, #00d4ff)',
@@ -51,19 +51,19 @@ const SpinningRocket = () => {
                         ease: "linear"
                     }}
                 />
-                
+
                 {/* Inner glow */}
                 <div className="absolute inset-0 rounded-full bg-[#00d4ff] blur-lg opacity-40 scale-110" />
-                
+
                 {/* Rocket image */}
                 <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#00d4ff]/70 shadow-lg shadow-[#00d4ff]/30">
-                    <img 
-                        src={rocketImg} 
-                        alt="Rocket" 
+                    <img
+                        src={rocketImg}
+                        alt="Rocket"
                         className="w-full h-full object-cover"
                     />
                 </div>
-                
+
                 {/* Sparkle effects */}
                 <motion.div
                     className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full"
@@ -112,7 +112,7 @@ const AnimatedSocialIcon = ({ icon, label, href, color, delay }) => {
                 style={{
                     border: `1px solid ${color}40`,
                 }}
-                whileHover={{ 
+                whileHover={{
                     scale: 1.1,
                     borderColor: color,
                     boxShadow: `0 0 25px ${color}40`,
@@ -121,9 +121,9 @@ const AnimatedSocialIcon = ({ icon, label, href, color, delay }) => {
             >
                 <div style={{ color }}>{icon}</div>
             </motion.div>
-            
+
             {/* Label */}
-            <span 
+            <span
                 className="text-xs font-medium opacity-60 group-hover:opacity-100 transition-opacity"
                 style={{ color }}
             >
@@ -138,25 +138,25 @@ const GamifiedSocialIcons = () => {
     const linkedIn = {
         icon: (
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
             </svg>
         ),
         label: "LinkedIn",
         href: "https://linkedin.com",
         color: "#0077b5",
     };
-    
+
     const gitHub = {
         icon: (
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
             </svg>
         ),
         label: "GitHub",
         href: "https://github.com",
         color: "#00d4ff",
     };
-    
+
     return (
         <>
             {/* LinkedIn - Far Left */}
@@ -168,7 +168,7 @@ const GamifiedSocialIcons = () => {
             >
                 <AnimatedSocialIcon {...linkedIn} delay={1.9} />
             </motion.div>
-            
+
             {/* GitHub - Far Right */}
             <motion.div
                 className="absolute bottom-20 right-6 sm:right-12"
@@ -186,7 +186,7 @@ const GamifiedSocialIcons = () => {
 const TypewriterName = ({ name }) => {
     const [displayText, setDisplayText] = useState('');
     const [showCursor, setShowCursor] = useState(true);
-    
+
     useEffect(() => {
         let index = 0;
         const timeout = setTimeout(() => {
@@ -203,15 +203,15 @@ const TypewriterName = ({ name }) => {
         }, 200); // Faster start (was 500)
         return () => clearTimeout(timeout);
     }, [name]);
-    
+
     return (
-        <motion.h1 
+        <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 md:mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
-            <span 
+            <span
                 className="text-[#00d4ff]"
                 style={{
                     textShadow: '0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 212, 255, 0.3)',
@@ -236,7 +236,7 @@ const FloatingParticles = () => {
         duration: Math.random() * 15 + 15,
         delay: Math.random() * 10,
     }));
-    
+
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {particles.map((p) => (
@@ -269,7 +269,7 @@ const FloatingParticles = () => {
 const MatrixCodeRain = () => {
     const columns = 12; // Reduced from 20 for better performance
     const chars = '01アイウエオカキクケコ';
-    
+
     return (
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.15]">
             {Array.from({ length: columns }).map((_, i) => (
@@ -291,8 +291,8 @@ const MatrixCodeRain = () => {
                     }}
                 >
                     {Array.from({ length: 15 }).map((_, j) => (
-                        <div 
-                            key={j} 
+                        <div
+                            key={j}
                             className="leading-5"
                             style={{ opacity: 1 - (j * 0.06) }}
                         >
@@ -308,7 +308,7 @@ const MatrixCodeRain = () => {
 // Subtle grid background
 const SubtleGrid = () => {
     return (
-        <div 
+        <div
             className="absolute inset-0 pointer-events-none opacity-[0.03]"
             style={{
                 backgroundImage: `
@@ -325,9 +325,9 @@ const SubtleGrid = () => {
 const WelcomeText = () => {
     const text = "Welcome to my portfolio";
     const words = text.split(' ');
-    
+
     return (
-        <motion.div 
+        <motion.div
             className="mb-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -358,7 +358,7 @@ const WelcomeText = () => {
                     </span>
                 ))}
             </motion.p>
-            
+
             {/* Subtle underline */}
             <motion.div
                 className="h-[1px] mx-auto mt-6 bg-gradient-to-r from-transparent via-[#00d4ff]/50 to-transparent"
@@ -383,10 +383,10 @@ const ExploreButton = ({ onClick }) => {
             whileTap={{ scale: 0.98 }}
             aria-label="Scroll down"
         >
-            <motion.svg 
+            <motion.svg
                 className="w-6 h-6"
-                fill="none" 
-                stroke="currentColor" 
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
                 animate={{ y: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -403,7 +403,7 @@ const Hero3D = ({ scrollToSection }) => {
         <section className="min-h-screen relative overflow-hidden flex items-center justify-center bg-[#0a0a0a]">
             {/* Subtle gradient background */}
             <div className="absolute inset-0 z-0">
-                <div 
+                <div
                     className="absolute inset-0"
                     style={{
                         background: `
@@ -414,38 +414,38 @@ const Hero3D = ({ scrollToSection }) => {
                     }}
                 />
             </div>
-            
+
             {/* Subtle grid */}
             <SubtleGrid />
-            
+
             {/* Matrix code rain - subtle */}
             <MatrixCodeRain />
-            
+
             {/* Floating particles - more subtle */}
             <FloatingParticles />
-            
+
             {/* Spinning Rocket in upper left */}
             <SpinningRocket />
-            
+
             {/* Main content */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-5xl mx-auto text-center">
-                    
+
                     {/* Typing Name Animation */}
                     <TypewriterName name="Paul Adutwum" />
-                    
+
                     {/* Welcome Text */}
                     <WelcomeText />
-                    
+
                     {/* Explore Button */}
                     <ExploreButton onClick={() => scrollToSection('about')} />
-                    
+
                 </div>
             </div>
-            
+
             {/* Gamified Social Icons - positioned at bottom */}
             <GamifiedSocialIcons />
-            
+
             {/* Scroll indicator */}
             <motion.div
                 className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10"

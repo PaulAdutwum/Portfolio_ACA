@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import ProjectCard from './components/ProjectCard';
-import PhotoGallery from './components/PhotoGallery';
-import ResearchShowcase from './components/ResearchShowcase';
-import Timeline from './components/Timeline';
 import Footer from './components/Footer';
 import Hero3D from './components/Hero3D';
 
@@ -14,13 +11,7 @@ const AnimatedBackground = lazy(() => import('./components/AnimatedBackground'))
 const ParticleField = lazy(() => import('./components/ParticleField'));
 
 // Import generated visual assets
-import heroVisual from './assets/hero-main.png';
 import portraitPlaceholder from './assets/lex6.jpeg';
-import researchVisual from './assets/research-visual.png';
-import communityVisual from './assets/community-visual.png';
-import projectsVisual from './assets/projects-visual.png';
-import galleryHero from './assets/gallery-hero.png';
-import hobbiesVisual from './assets/hobbies-visual.png';
 import recyclensPreview from './assets/recyc.png';
 import handshakePreview from './assets/handshake.png';
 import lumeoPreview from './assets/lumeo.png';
@@ -206,7 +197,7 @@ const extracurricularsData = [
         location: "Lewiston, ME",
         icon: "🤝",
         highlights: [
-            "Volunteer weekly at the Tree Street Youth Center, mentoring K-12 students through youth-development workshops",
+            "Volunteer weekly mentoring K-12 students through youth-development workshops",
             "Foster collaboration between Bates students and local nonprofit organizations"
         ]
     },
@@ -289,52 +280,6 @@ const extracurricularsData = [
     }
 ];
 
-// Photo gallery data
-const galleryImages = [
-    {
-        id: 1,
-        src: "https://kimi-web-img.moonshot.cn/img/cdn.pixabay.com/eb0b8b95b734dda727238ef1b12e8b728e195267.jpg",
-        category: "Ghana",
-        title: "Ghana Heritage",
-        description: "Traditional Ghanaian architecture and cultural elements"
-    },
-    {
-        id: 2,
-        src: galleryHero,
-        category: "Bates College",
-        title: "Academic Journey",
-        description: "From Ghana to Maine: Pursuing excellence in STEM"
-    },
-    {
-        id: 3,
-        src: "https://kimi-web-img.moonshot.cn/img/img.freepik.com/44a2b20af9464daee0df22745e55f2f4b56d4a4f.jpg",
-        category: "Research",
-        title: "Mathematical Research",
-        description: "Exploring computational number theory and Ulam sequences"
-    },
-    {
-        id: 4,
-        src: "https://kimi-web-img.moonshot.cn/img/wpvip.edutopia.org/c2645986eb417d79f9262930ec8f6eee1427d302.jpg",
-        category: "Community",
-        title: "Tech Education",
-        description: "Empowering youth through technology education"
-    },
-    {
-        id: 5,
-        src: communityVisual,
-        category: "Tree Street Youth",
-        title: "Bonner Fellowship",
-        description: "Community leadership and youth mentoring"
-    },
-    {
-        id: 6,
-        src: "https://kimi-web-img.moonshot.cn/img/www.collidu.com/49f2544e7c3e6ef4b9e74876d9a400c907ff5aa4.png",
-        category: "Research",
-        title: "Academic Presentations",
-        description: "Sharing research findings with the academic community"
-    }
-];
-
 // Awards data
 const awards = [
     {
@@ -414,7 +359,7 @@ function App() {
     const projectsRef = useRef(null);
     const awardsRef = useRef(null);
     const communityRef = useRef(null);
-    const galleryRef = useRef(null);
+    const contactRef = useRef(null);
     const hobbiesRef = useRef(null);
     
     const sectionRefs = {
@@ -424,7 +369,7 @@ function App() {
         projects: projectsRef,
         awards: awardsRef,
         community: communityRef,
-        gallery: galleryRef,
+        contact: contactRef,
         hobbies: hobbiesRef
     };
     
@@ -890,25 +835,6 @@ function App() {
                 </div>
             </section>
             
-            {/* Photo Gallery Section */}
-            <section ref={galleryRef} id="gallery" className="py-20 bg-[#1a1a1a]">
-                <div className="container mx-auto px-4">
-                    <motion.div 
-                        className="max-w-6xl mx-auto"
-                        variants={sectionVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
-                            Photo Experience Gallery
-                        </h2>
-                        
-                        <PhotoGallery images={galleryImages} />
-                    </motion.div>
-                </div>
-            </section>
-            
             {/* Hobbies Section */}
             <section ref={hobbiesRef} id="hobbies" className="py-16 bg-[#0a0a0a]">
                 <div className="container mx-auto px-4">
@@ -966,6 +892,88 @@ function App() {
                         <p className="text-center text-[#666] text-sm mt-6 italic">
                             More hobbies coming soon...
                         </p>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* Contact Section */}
+            <section ref={contactRef} id="contact" className="py-20 bg-[#1a1a1a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 gradient-text">
+                            Contact
+                        </h2>
+                        <p className="text-center text-[#a0a0a0] max-w-2xl mx-auto mb-12">
+                            Feel free to reach out to me.
+                        </p>
+                        
+                        <div className="max-w-3xl mx-auto">
+                            <form
+                                action="mailto:paul.adutwum@example.com"
+                                method="post"
+                                encType="text/plain"
+                                className="bg-[#0f0f0f] rounded-2xl p-6 md:p-8 border border-[#333]"
+                            >
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-sm text-[#a0a0a0] mb-2">Full Name</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            placeholder="Your name"
+                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff]"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm text-[#a0a0a0] mb-2">Email</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="you@example.com"
+                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff]"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                
+                                <div className="mt-6">
+                                    <label className="block text-sm text-[#a0a0a0] mb-2">Subject</label>
+                                    <input
+                                        type="text"
+                                        name="subject"
+                                        placeholder="What is this about?"
+                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff]"
+                                    />
+                                </div>
+                                
+                                <div className="mt-6">
+                                    <label className="block text-sm text-[#a0a0a0] mb-2">Message</label>
+                                    <textarea
+                                        name="message"
+                                        rows={6}
+                                        placeholder="Write your message..."
+                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff] resize-none"
+                                        required
+                                    />
+                                </div>
+                                
+                                <div className="mt-8 flex justify-center">
+                                    <button
+                                        type="submit"
+                                        className="bg-[#00d4ff] text-[#0a0a0a] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors"
+                                    >
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </motion.div>
                 </div>
             </section>

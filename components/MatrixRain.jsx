@@ -45,7 +45,7 @@ const MatrixRain = ({ opacity = 0.15 }) => {
             for (let i = 0; i < drops.length; i++) {
                 // Random character
                 const char = charArray[Math.floor(Math.random() * charArray.length)];
-                
+
                 // Random color from palette
                 const colorBase = colors[Math.floor(Math.random() * colors.length)];
                 const alpha = Math.random() * 0.5 + 0.5;
@@ -58,7 +58,7 @@ const MatrixRain = ({ opacity = 0.15 }) => {
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
-                
+
                 // Move drop down
                 drops[i]++;
             }
