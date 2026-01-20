@@ -201,68 +201,90 @@ const researchPapers = [
 const extracurricularsData = [
     {
         id: 1,
-        title: "Bonner Racial Justice Fellow | STEM Educator",
-        organization: "Tree Street Youth",
+        title: "Bonner Racial Justice Fellow",
+        organization: "Harward Center for Community Partnerships",
         location: "Lewiston, ME",
-        icon: "🎓",
+        icon: "🤝",
         highlights: [
-            "Lead weekly STEM workshops for high school students (primarily refugees/immigrants), utilizing Arduino kits to demystify engineering",
-            "Foster confidence in technical fields for underrepresented youth, bridging the 'digital divide' through hands-on education"
+            "Volunteer weekly at the Tree Street Youth Center, mentoring K-12 students through youth-development workshops",
+            "Foster collaboration between Bates students and local nonprofit organizations"
         ]
     },
     {
         id: 2,
-        title: "Co-President",
-        organization: "African Student Association (ASA)",
+        title: "Residential Assistant",
+        organization: "Bates College",
         location: "Bates College",
-        icon: "🌍",
+        icon: "🏠",
         highlights: [
-            "Orchestrate campus-wide programming to celebrate African heritage and identity",
-            "Organize forums and hackathons to discuss the role of technology in the African diaspora"
+            "Manage a diverse community of 60+ students, fostering an inclusive residential environment",
+            "Organize community building events through monthly student engagement initiatives"
         ]
     },
     {
         id: 3,
-        title: "Founder & Program Lead",
-        organization: "Tech Elevate",
-        location: "Accra, Ghana & Remote",
-        icon: "🚀",
+        title: "Member, Campus Safety Advisory Committee",
+        organization: "Bates Student Government",
+        location: "Bates College",
+        icon: "🛡️",
         highlights: [
-            "Established a mentorship pipeline connecting 100+ Ghanaian students with resources in Data Structures & System Design",
-            "Achieved an 85% placement rate for participants in technical internships through targeted mock interview workshops"
+            "Serve as a student representative liaising between students and administrators on campus safety policies",
+            "Support campus-wide emergency preparedness initiatives"
         ]
     },
     {
         id: 4,
-        title: "Teaching Assistant (DCS 109)",
-        organization: "Intro to Computing",
+        title: "Secretary",
+        organization: "Bates Africana Club",
         location: "Bates College",
-        icon: "💻",
+        icon: "🎭",
         highlights: [
-            "Lead weekly laboratory sessions, guiding students through fundamental Python programming concepts",
-            "Assist students in troubleshooting logic errors and understanding algorithmic thinking"
+            "Organize weekly club programming and coordinate campus-wide intercultural events",
+            "Lead events such as Afro Gala and Africana fashion showcases to celebrate African heritage"
         ]
     },
     {
         id: 5,
-        title: "Captain & Member",
-        organization: "Intramural Soccer Club",
+        title: "Member",
+        organization: "Bates Soccer Club",
         location: "Bates College",
-        icon: "⚽",
+        icon: "🥅",
         highlights: [
-            "Captain diverse teams of students in weekly matches, fostering camaraderie and physical wellness",
-            "Practice communication and quick decision-making in a high-energy team environment"
+            "Built a web application to manage intramural soccer competitions, improving scheduling and score tracking",
+            "Competed as a striker in inter-school scrimmages"
         ]
     },
     {
         id: 6,
-        title: "LinkedIn Inspire Day Participant",
-        organization: "Professional Development",
-        location: "LinkedIn",
+        title: "Member",
+        organization: "Physics and Astronomy Club",
+        location: "Bates College",
+        icon: "🔭",
+        highlights: [
+            "Assisted in organizing campus stargazing nights, planetarium shows, and outreach events",
+            "Coordinated telescope setup and student engagement to make astronomy accessible"
+        ]
+    },
+    {
+        id: 7,
+        title: "LinkedIn Inspire Day",
+        organization: "LinkedIn (New York Office)",
+        location: "New York, NY",
         icon: "💼",
         highlights: [
-            "Selected to participate in leadership development workshops",
-            "Networking with industry professionals to refine career strategies in technology"
+            "Selected as one of 20 participants from over 800 applicants for a career summit",
+            "Engaged with senior leaders and engineers on professional identity and representation in STEM"
+        ]
+    },
+    {
+        id: 8,
+        title: "Aspire Leaders Program",
+        organization: "Aspire Institute at Harvard Business School",
+        location: "Virtual",
+        icon: "🌟",
+        highlights: [
+            "Selected from thousands of applicants for a global leadership development program",
+            "Completed Harvard-led coursework, peer discussions, and professional development on leadership and community impact"
         ]
     }
 ];
@@ -317,31 +339,39 @@ const galleryImages = [
 const awards = [
     {
         id: "award-1",
-        title: "Dana Scholar Award",
-        institution: "Bates College",
-        year: "2027",
+        title: "Winner, ASA DataFest Hackathon",
+        institution: "American Statistical Association",
+        year: "2025",
         description:
-            "One of just 20 students in the Class of 2027 selected for this prestigious award, honoring exceptional academic achievement, proven leadership potential, and dedicated service to the Bates community."
+            "Won the American Statistical Association DataFest hackathon through data-driven analysis, storytelling, and team collaboration under tight time constraints."
     },
     {
         id: "award-2",
+        title: "Dana Scholar",
+        institution: "Bates College",
+        year: "2024",
+        description:
+            "Selected for a competitive scholarship recognizing academic excellence, leadership potential, and service to the Bates community."
+    },
+    {
+        id: "award-3",
         title: "Dean's List",
         institution: "Bates College",
         year: "All Semesters",
         description:
-            "Recognition for maintaining a GPA above 3.9 consistently throughout academic career."
-    },
-    {
-        id: "award-3",
-        title: "Most Outstanding Community Engagement by a First Year Student",
-        institution: "Bates College",
-        year: "2024",
-        description:
-            "Awarded for spearheading student-led community service in Lewiston's urban neighborhoods and for building volunteer programs that connect Bates students with local initiatives."
+            "Recognition for maintaining strong academic performance across multiple semesters."
     },
     {
         id: "award-4",
-        title: "STEM Scholar",
+        title: "Most Outstanding Community Engagement Award",
+        institution: "Bates College",
+        year: "2024",
+        description:
+            "Honored for community leadership and building meaningful partnerships between students and local organizations."
+    },
+    {
+        id: "award-5",
+        title: "STEM Scholars",
         institution: "Bates College",
         year: "2024-2025",
         description:
@@ -479,6 +509,9 @@ function App() {
     
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white relative">
+            {/* Subtle animated side signals */}
+            <div className="side-signal side-signal-left" aria-hidden="true" />
+            <div className="side-signal side-signal-right" aria-hidden="true" />
             {/* Dynamic Animated Backgrounds - Only show on desktop for performance */}
             {!isMobile && (
                 <Suspense fallback={<div className="fixed inset-0 bg-[#0a0a0a]" />}>

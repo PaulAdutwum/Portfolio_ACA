@@ -114,34 +114,7 @@ const Footer = () => {
                     </motion.div>
                     
                     {/* Divider */}
-                    <div className="h-px w-full max-w-md mx-auto bg-gradient-to-r from-transparent via-[#30363d] to-transparent mb-8" />
-                    
-                    {/* Built with */}
-                    <motion.div 
-                        className="text-center"
-                        variants={footerVariants}
-                    >
-                        <p className="text-[#6e7681] text-sm tracking-wide">
-                            Designed and built with{' '}
-                            <motion.span 
-                                className="inline-block text-red-500"
-                                animate={{ 
-                                    scale: [1, 1.2, 1],
-                                }}
-                                transition={{ 
-                                    duration: 1,
-                                    repeat: Infinity,
-                                    repeatDelay: 1
-                                }}
-                            >
-                                ❤️
-                            </motion.span>
-                            {' '}using{' '}
-                            <span className="text-[#00d4ff]">React</span>,{' '}
-                            <span className="text-[#00d4ff]">TypeScript</span>, and{' '}
-                            <span className="text-[#00d4ff]">TailwindCSS</span>
-                        </p>
-                    </motion.div>
+                    <div className="h-px w-full max-w-md mx-auto bg-gradient-to-r from-transparent via-[#30363d] to-transparent" />
                 </div>
             </div>
         </motion.footer>
