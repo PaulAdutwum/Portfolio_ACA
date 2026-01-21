@@ -350,6 +350,7 @@ function App() {
     const [activeSection, setActiveSection] = useState('hero');
     const [isLoading, setIsLoading] = useState(true);
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [contactStatus, setContactStatus] = useState('idle');
     // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora'
     const [backgroundMode, setBackgroundMode] = useState('matrix');
     
@@ -418,6 +419,35 @@ function App() {
         if (ref?.current) {
             ref.current.scrollIntoView({ behavior: 'smooth' });
             setActiveSection(sectionId);
+        }
+    };
+
+    const handleContactSubmit = async (event) => {
+        event.preventDefault();
+        setContactStatus('sending');
+        const form = event.currentTarget;
+
+        try {
+            const response = await fetch('https://formspree.io/f/xdkgoynb', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    Accept: 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                setContactStatus('success');
+                form.reset();
+                setTimeout(() => setContactStatus('idle'), 5000);
+            } else {
+                setContactStatus('error');
+                setTimeout(() => setContactStatus('idle'), 5000);
+            }
+        } catch (error) {
+            console.error('Failed to send form:', error);
+            setContactStatus('error');
+            setTimeout(() => setContactStatus('idle'), 5000);
         }
     };
     
@@ -915,11 +945,10 @@ function App() {
                         
                         <div className="max-w-3xl mx-auto">
                             <form
-                                action="mailto:paul.adutwum@example.com"
-                                method="post"
-                                encType="text/plain"
+                                onSubmit={handleContactSubmit}
                                 className="bg-[#0f0f0f] rounded-2xl p-6 md:p-8 border border-[#333]"
                             >
+                                <input type="hidden" name="_subject" value="New contact from Portfolio" />
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
                                         <label className="block text-sm text-[#a0a0a0] mb-2">Full Name</label>
@@ -967,11 +996,27 @@ function App() {
                                 <div className="mt-8 flex justify-center">
                                     <button
                                         type="submit"
-                                        className="bg-[#00d4ff] text-[#0a0a0a] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors"
+                                        disabled={contactStatus === 'sending'}
+                                        className="bg-[#00d4ff] text-[#0a0a0a] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
-                                        Send Message
+                                        {contactStatus === 'sending' ? 'Sending...' : 'Send Message'}
                                     </button>
                                 </div>
+                                
+                                {contactStatus === 'success' && (
+                                    <div className="mt-6 flex items-center justify-center gap-2 text-[#00ff88] bg-[#00ff88]/10 border border-[#00ff88]/30 rounded-lg px-4 py-3 text-sm">
+                                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        Message sent successfully! I will get back to you soon.
+                                    </div>
+                                )}
+                                
+                                {contactStatus === 'error' && (
+                                    <div className="mt-6 text-center text-[#ff6b35] bg-[#ff6b35]/10 border border-[#ff6b35]/30 rounded-lg px-4 py-3 text-sm">
+                                        Something went wrong. Please try again later.
+                                    </div>
+                                )}
                             </form>
                         </div>
                     </motion.div>
