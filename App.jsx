@@ -195,7 +195,6 @@ const extracurricularsData = [
         title: "Bonner Racial Justice Fellow",
         organization: "Harward Center for Community Partnerships",
         location: "Lewiston, ME",
-        icon: "🤝",
         highlights: [
             "Volunteer weekly mentoring K-12 students through youth-development workshops",
             "Foster collaboration between Bates students and local nonprofit organizations"
@@ -206,7 +205,6 @@ const extracurricularsData = [
         title: "Residential Assistant",
         organization: "Bates College",
         location: "Bates College",
-        icon: "🏠",
         highlights: [
             "Manage a diverse community of 60+ students, fostering an inclusive residential environment",
             "Organize community building events through monthly student engagement initiatives"
@@ -217,7 +215,6 @@ const extracurricularsData = [
         title: "Member, Campus Safety Advisory Committee",
         organization: "Bates Student Government",
         location: "Bates College",
-        icon: "🛡️",
         highlights: [
             "Serve as a student representative liaising between students and administrators on campus safety policies",
             "Support campus-wide emergency preparedness initiatives"
@@ -228,7 +225,6 @@ const extracurricularsData = [
         title: "Secretary",
         organization: "Bates Africana Club",
         location: "Bates College",
-        icon: "🎭",
         highlights: [
             "Organize weekly club programming and coordinate campus-wide intercultural events",
             "Lead events such as Afro Gala and Africana fashion showcases to celebrate African heritage"
@@ -239,7 +235,6 @@ const extracurricularsData = [
         title: "Member",
         organization: "Bates Soccer Club",
         location: "Bates College",
-        icon: "🥅",
         highlights: [
             "Built a web application to manage intramural soccer competitions, improving scheduling and score tracking",
             "Competed as a striker in inter-school scrimmages"
@@ -250,7 +245,6 @@ const extracurricularsData = [
         title: "Member",
         organization: "Physics and Astronomy Club",
         location: "Bates College",
-        icon: "🔭",
         highlights: [
             "Assisted in organizing campus stargazing nights, planetarium shows, and outreach events",
             "Coordinated telescope setup and student engagement to make astronomy accessible"
@@ -261,7 +255,6 @@ const extracurricularsData = [
         title: "LinkedIn Inspire Day",
         organization: "LinkedIn (New York Office)",
         location: "New York, NY",
-        icon: "💼",
         highlights: [
             "Selected as one of 20 participants from over 800 applicants for a career summit",
             "Engaged with senior leaders and engineers on professional identity and representation in STEM"
@@ -272,7 +265,6 @@ const extracurricularsData = [
         title: "Aspire Leaders Program",
         organization: "Aspire Institute at Harvard Business School",
         location: "Virtual",
-        icon: "🌟",
         highlights: [
             "Selected from thousands of applicants for a global leadership development program",
             "Completed Harvard-led coursework, peer discussions, and professional development on leadership and community impact"
@@ -831,9 +823,6 @@ function App() {
                                     viewport={{ once: true }}
                                     whileHover={{ y: -5, boxShadow: '0 10px 40px rgba(0, 212, 255, 0.1)' }}
                                 >
-                                    {/* Icon */}
-                                    <div className="text-4xl mb-4">{item.icon}</div>
-                                    
                                     {/* Title */}
                                     <h3 className="text-lg font-bold text-[#00d4ff] mb-1">
                                         {item.title}
@@ -918,10 +907,6 @@ function App() {
                             ))}
                         </div>
                         
-                        {/* More coming soon text */}
-                        <p className="text-center text-[#666] text-sm mt-6 italic">
-                            More hobbies coming soon...
-                        </p>
                     </motion.div>
                 </div>
             </section>
