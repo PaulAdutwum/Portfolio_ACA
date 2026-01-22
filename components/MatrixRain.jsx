@@ -7,7 +7,7 @@ const MatrixRain = ({ opacity = 0.15 }) => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
 
-        // Set canvas size
+
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -59,7 +59,7 @@ const MatrixRain = ({ opacity = 0.15 }) => {
                     drops[i] = 0;
                 }
 
-                // Move drop down
+
                 drops[i]++;
             }
         };
@@ -80,6 +80,7 @@ const MatrixRain = ({ opacity = 0.15 }) => {
         />
     );
 };
+
 
 export default MatrixRain;
 
