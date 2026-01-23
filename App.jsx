@@ -537,22 +537,20 @@ function App() {
                                 <div className="space-y-5 text-[#c0c0c0] leading-relaxed text-lg">
                                     <p>
                                         Welcome to my portfolio! My name is <span className="text-[#00d4ff] font-semibold">Paul Adutwum</span>. 
-                                        I'm currently in the United States, but I'm originally from <span className="text-[#00d4ff]">Ghana</span>.
+                                        I'm currently based in the United States, but I'm originally from <span className="text-[#00d4ff]">Ghana</span>.
                                     </p>
                                     
                                     <p>
-                                        I'm a first-generation student studying <span className="text-[#00d4ff]">mathematics</span> and{' '}
-                                        <span className="text-[#00d4ff]">physics</span> at <span className="text-[#00d4ff]">Bates College</span>.
+                                        I'm a first-generation student at <span className="text-[#00d4ff]">Bates College</span>, studying{' '}
+                                        <span className="text-[#00d4ff]">Mathematics</span> and <span className="text-[#00d4ff]">Physics</span>{' '}
+                                        with a minor in <span className="text-[#00d4ff]">Computational Studies</span>. I've always enjoyed 
+                                        figuring out how things work, and right now, I'm exploring <span className="text-[#00d4ff]">AI</span>{' '}
+                                        and <span className="text-[#00d4ff]">embedded systems</span> through personal projects.
                                     </p>
                                     
                                     <p>
-                                        I enjoy figuring out how things work, and right now I'm exploring{' '}
-                                        <span className="text-[#00d4ff]">AI</span> and <span className="text-[#00d4ff]">embedded systems</span>{' '}
-                                        through personal projects.
-                                    </p>
-                                    
-                                    <p className="pt-4 text-[#c0c0c0]">
-                                        I'm always happy to connect, so feel free to reach out! 🚀
+                                        Beyond academics, I love staying active and unwinding with music. You'll likely find me on the{' '}
+                                        soccer field, but I'm always happy to connect and chat — so feel free to reach out! 🚀
                                     </p>
                                 </div>
                             </div>
