@@ -193,81 +193,61 @@ const extracurricularsData = [
     {
         id: 1,
         title: "Bonner Racial Justice Fellow",
-        organization: "Harward Center for Community Partnerships",
+        organization: "Harward Center for Community Partnerships, Bates College",
         location: "Lewiston, ME",
+        dates: "September 2023 – Present",
         highlights: [
-            "Volunteer weekly mentoring K-12 students through youth-development workshops",
-            "Foster collaboration between Bates students and local nonprofit organizations"
+            "Volunteer weekly at the Tree Street Youth Center in Lewiston, mentoring K-12 students through youth-development workshops and fostering collaboration between Bates students and local nonprofit organizations in Lewiston."
         ]
     },
     {
         id: 2,
         title: "Residential Assistant",
         organization: "Bates College",
-        location: "Bates College",
+        location: "Lewiston, ME",
+        dates: "September 2024 – Present",
         highlights: [
-            "Manage a diverse community of 60+ students, fostering an inclusive residential environment",
-            "Organize community building events through monthly student engagement initiatives"
+            "Lead a diverse community of 60+ students, organizing community building events and fostering an inclusive residential environment through monthly student engagement initiatives."
         ]
     },
     {
         id: 3,
         title: "Member, Campus Safety Advisory Committee",
         organization: "Bates Student Government",
-        location: "Bates College",
+        location: "Lewiston, ME",
+        dates: "November 2023 – Present",
         highlights: [
-            "Serve as a student representative liaising between students and administrators on campus safety policies",
-            "Support campus-wide emergency preparedness initiatives"
+            "Serve as a student representative on the Campus Safety Advisory Committee, liaising between students and administrators to shape campus safety policies and organize campus-wide emergency preparedness initiatives."
         ]
     },
     {
         id: 4,
-        title: "Secretary",
-        organization: "Bates Africana Club",
-        location: "Bates College",
+        title: "Board Member, Africana Club",
+        organization: "Bates College",
+        location: "Lewiston, ME",
+        dates: "November 2024 – Present",
         highlights: [
-            "Organize weekly club programming and coordinate campus-wide intercultural events",
-            "Lead events such as Afro Gala and Africana fashion showcases to celebrate African heritage"
+            "Organize weekly club programming and coordinate campus-wide intercultural events, including Afro Gala and Africana fashion showcases, to celebrate African heritage and build community across campus."
         ]
     },
     {
         id: 5,
         title: "Member",
-        organization: "Bates Soccer Club",
-        location: "Bates College",
+        organization: "Soccer Club",
+        location: "Lewiston, ME",
+        dates: "September 2023 – Present",
         highlights: [
-            "Built a web application to manage intramural soccer competitions, improving scheduling and score tracking",
-            "Competed as a striker in inter-school scrimmages"
+            "Built a web application to manage intramural soccer competitions, improving scheduling and score tracking, and competed as a striker in inter-school scrimmages."
         ]
     },
     {
         id: 6,
         title: "Member",
         organization: "Physics and Astronomy Club",
-        location: "Bates College",
+        location: "Lewiston, ME",
+        dates: "September 2023 – Present",
         highlights: [
-            "Assisted in organizing campus stargazing nights, planetarium shows, and outreach events",
-            "Coordinated telescope setup and student engagement to make astronomy accessible"
-        ]
-    },
-    {
-        id: 7,
-        title: "LinkedIn Inspire Day",
-        organization: "LinkedIn (New York Office)",
-        location: "New York, NY",
-        highlights: [
-            "Selected as one of 20 participants from over 800 applicants for a career summit",
-            "Engaged with senior leaders and engineers on professional identity and representation in STEM"
-        ]
-    },
-    {
-        id: 8,
-        title: "Aspire Leaders Program",
-        organization: "Aspire Institute at Harvard Business School",
-        location: "Virtual",
-        highlights: [
-            "Selected from thousands of applicants for a global leadership development program",
-            "Completed Harvard-led coursework, peer discussions, and professional development on leadership and community impact"
+            "Assisted in organizing campus stargazing nights, planetarium shows, and outreach events, coordinating telescope setup and student engagement to make astronomy accessible to community members."
         ]
     }
 ];
@@ -276,11 +256,11 @@ const extracurricularsData = [
 const awards = [
     {
         id: "award-1",
-        title: "Winner, ASA DataFest Hackathon",
+        title: "DataFest Hackathon — Best Insight (1st Place)",
         institution: "American Statistical Association",
         year: "2025",
         description:
-            "Won the American Statistical Association DataFest hackathon through data-driven analysis, storytelling, and team collaboration under tight time constraints."
+            "Awarded 1st Place for Best Insight for predictive modeling and analysis of large-scale commercial real estate data."
     },
     {
         id: "award-2",
@@ -288,15 +268,15 @@ const awards = [
         institution: "Bates College",
         year: "2024",
         description:
-            "Selected for a competitive scholarship recognizing academic excellence, leadership potential, and service to the Bates community."
+            "Highest institutional honor awarded to select first-year students for academic excellence and leadership potential."
     },
     {
         id: "award-3",
         title: "Dean's List",
         institution: "Bates College",
-        year: "All Semesters",
+        year: "2023, 2024",
         description:
-            "Recognition for maintaining strong academic performance across multiple semesters."
+            "Awarded for consistent academic achievement, maintaining a cumulative GPA of 3.92 or higher."
     },
     {
         id: "award-4",
@@ -304,15 +284,36 @@ const awards = [
         institution: "Bates College",
         year: "2024",
         description:
-            "Honored for community leadership and building meaningful partnerships between students and local organizations."
+            "Recipient of the “Rookie of the Year” award for exceptional initiative and leadership in civic engagement and community service."
+    }
+];
+
+// Work experience and hackathons
+const workExperiences = [
+    {
+        id: "work-1",
+        title: "Software Engineering Intern, Platform Engineering Team",
+        organization: "InboundAV",
+        location: "Remote",
+        dates: "June 2025 – August 2025"
     },
     {
-        id: "award-5",
-        title: "STEM Scholars",
-        institution: "Bates College",
-        year: "2024-2025",
-        description:
-            "Merit-based scholarship awarded for outstanding academic achievement and potential for continued success."
+        id: "work-2",
+        title: "Model Validation Assistant",
+        organization: "Handshake AI",
+        location: "Remote",
+        dates: "October 2025 – Present",
+        image: handshakePreview
+    }
+];
+
+const hackathons = [
+    {
+        id: "hack-1",
+        title: "Data Analyst",
+        organization: "American Statistical Association — DataFest Hackathon",
+        location: "Waterville, ME",
+        dates: "February 2025 – March 2025"
     }
 ];
 
@@ -591,39 +592,38 @@ function App() {
                             <div className="space-y-4 text-[#c0c0c0] leading-relaxed text-lg mb-8">
                                 <p>
                                     In my first year at Bates College, I worked as a research assistant with{' '}
-                                    <span className="text-[#00d4ff]">Professor Senia Sheydvasser</span> in the math department. 
-                                    I was interested in the computational side of math, but I hadn’t taken many advanced 
-                                    classes or done formal research before. Joining a project focused on abstract 
-                                    combinatorics and number theory — especially the <span className="text-[#00d4ff]">Gibbs conjecture</span> and{' '}
-                                    <span className="text-[#00d4ff]">Ulam sequences</span> — felt intimidating at first, 
-                                    and I had a lot to learn.
+                                    <span className="text-[#00d4ff]">Professor Senia Sheydvasser</span> in the mathematics department. 
+                                    I was curious about how mathematical ideas could be explored and tested through computation, 
+                                    even though I hadn’t yet taken many advanced classes or done formal research. Joining a 
+                                    project focused on abstract combinatorics and number theory—especially the{' '}
+                                    <span className="text-[#00d4ff]">Gibbs conjecture</span> and <span className="text-[#00d4ff]">Ulam sequences</span>—felt 
+                                    intimidating at first, and I had a lot to learn.
                                 </p>
                                 
                                 <p>
-                                    At first, I spent a lot of time learning new ideas in set combinatorics and additive 
-                                    number theory, and it took a while for everything to make sense. With Professor 
-                                    Sheydvasser’s guidance, I got better at asking questions, reading technical papers, 
-                                    and working with ideas that were new to me. Facing these challenges helped me grow 
-                                    and become more confident in tackling abstract math problems.
+                                    At the beginning, I spent a significant amount of time learning new ideas in set combinatorics 
+                                    and additive number theory, and it took a while for everything to come together. With Professor 
+                                    Sheydvasser’s guidance, I became more comfortable asking questions, reading technical papers, 
+                                    and working through unfamiliar concepts. Facing these challenges helped me grow and become more 
+                                    confident in engaging with abstract mathematical problems.
                                 </p>
                                 
                                 <p>
-                                    As the year went on, I began making larger contributions, especially to the 
-                                    computational parts of the project. I worked on expanding Ulam sequences of the 
-                                    form U(1, x) and on improving and extending datasets to find new patterns at 
-                                    larger scales. I refined and optimized the Gibbs algorithm used to compute Ulam 
-                                    numbers, enabling us to generate over 1 million terms, more than 60 times the 
-                                    previous amount. This made it possible to explore large-scale patterns and 
-                                    structures in Ulam sequences that hadn’t been studied before.
+                                    As the year progressed, I began making more substantial contributions, particularly on the 
+                                    computational side of the project. I worked on expanding Ulam sequences of the form U(1, x) and 
+                                    improving existing datasets to identify new patterns at larger scales. I refined and optimized 
+                                    the Gibbs algorithm used to compute Ulam numbers, ultimately enabling us to generate over one 
+                                    million terms—more than sixty times the size of the previous dataset. This expansion made it 
+                                    possible to explore large-scale structures and behaviors in Ulam sequences that had not been 
+                                    previously studied.
                                 </p>
                                 
                                 <p>
-                                    This work led to a published paper, which was my first experience with academic 
-                                    research and publication. More importantly, it changed how I think about math. I 
-                                    learned to tackle open-ended problems, combine theory with computation, and keep 
-                                    going even when things were uncertain. Doing research as a freshman made me want 
-                                    to keep exploring advanced topics in math and computer science, and it still 
-                                    shapes how I learn and solve problems today.
+                                    This work culminated in a published paper, marking my first experience with academic research 
+                                    and publication. More importantly, it reshaped how I think about mathematics. I learned how to 
+                                    approach open-ended problems, integrate theory with computation, and persist through uncertainty. 
+                                    Conducting research as a freshman sparked a lasting interest in advanced topics in mathematics 
+                                    and computer science, and it continues to influence how I learn and solve problems today.
                                 </p>
                             </div>
                             
@@ -747,6 +747,92 @@ function App() {
                 </div>
             </section>
             
+            {/* Experience Section */}
+            <section className="py-20 bg-[#0a0a0a]">
+                <div className="container mx-auto px-4">
+                    <motion.div 
+                        className="max-w-6xl mx-auto"
+                        variants={sectionVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6 gradient-text">
+                            Work Experience
+                        </h2>
+                        <p className="text-center text-[#a0a0a0] max-w-2xl mx-auto mb-12">
+                            Recent roles and team-based projects.
+                        </p>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {workExperiences.map((item, index) => (
+                                <motion.div
+                                    key={item.id}
+                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.08 }}
+                                    viewport={{ once: true }}
+                                    whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0, 212, 255, 0.08)' }}
+                                >
+                                    <div className="flex items-start justify-between gap-4 mb-3">
+                                        <h3 className="text-lg md:text-xl font-bold text-[#00d4ff]">
+                                            {item.organization}
+                                        </h3>
+                                        <span className="text-xs md:text-sm text-[#ffd700] whitespace-nowrap">
+                                            {item.dates}
+                                        </span>
+                                    </div>
+                                    <p className="text-white font-medium mb-2">
+                                        {item.title}
+                                    </p>
+                                    <p className="text-[#888] text-sm">
+                                        {item.location}
+                                    </p>
+                                    {item.image && (
+                                        <div className="mt-4 w-16 h-16 rounded-lg overflow-hidden border border-[#00d4ff]/30">
+                                            <img
+                                                src={item.image}
+                                                alt={`${item.organization} logo`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    )}
+                                </motion.div>
+                            ))}
+                        </div>
+                        
+                        <div className="mt-16">
+                            <h3 className="text-3xl md:text-4xl font-bold text-center mb-6 gradient-text">
+                                Hackathons
+                            </h3>
+                            <div className="max-w-3xl mx-auto space-y-4">
+                                {hackathons.map((item) => (
+                                    <div
+                                        key={item.id}
+                                        className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                    >
+                                        <div className="flex flex-wrap items-center justify-between gap-3">
+                                            <div>
+                                                <h4 className="text-lg font-bold text-[#00d4ff]">
+                                                    {item.organization}
+                                                </h4>
+                                                <p className="text-white font-medium">
+                                                    {item.title}
+                                                </p>
+                                            </div>
+                                            <div className="text-sm text-[#a0a0a0]">
+                                                {item.location} • {item.dates}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+            
             {/* Awards Section */}
             <section ref={awardsRef} id="awards" className="py-20 bg-[#0a0a0a]">
                 <div className="container mx-auto px-4">
@@ -810,43 +896,49 @@ function App() {
                             Extracurriculars
                         </h2>
                         
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {extracurricularsData.map((item, index) => (
-                                <motion.div
-                                    key={item.id}
-                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ y: -5, boxShadow: '0 10px 40px rgba(0, 212, 255, 0.1)' }}
-                                >
-                                    {/* Title */}
-                                    <h3 className="text-lg font-bold text-[#00d4ff] mb-1">
-                                        {item.title}
-                                    </h3>
-                                    
-                                    {/* Organization */}
-                                    <p className="text-white font-medium mb-1">
-                                        {item.organization}
-                                    </p>
-                                    
-                                    {/* Location */}
-                                    <p className="text-[#888] text-sm mb-4">
-                                        📍 {item.location}
-                                    </p>
-                                    
-                                    {/* Highlights */}
-                                    <ul className="space-y-2">
-                                        {item.highlights.map((highlight, i) => (
-                                            <li key={i} className="text-[#a0a0a0] text-sm flex items-start gap-2">
-                                                <span className="text-[#00d4ff] mt-1">•</span>
-                                                <span>{highlight}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </motion.div>
-                            ))}
+                        <div className="relative max-w-5xl mx-auto">
+                            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#00d4ff]/40 to-transparent" />
+                            <div className="space-y-6 pl-10">
+                                {extracurricularsData.map((item, index) => (
+                                    <motion.div
+                                        key={item.id}
+                                        className="relative bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                        initial={{ opacity: 0, y: 24 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.08 }}
+                                        viewport={{ once: true }}
+                                        whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0, 212, 255, 0.08)' }}
+                                    >
+                                        <div className="absolute -left-10 top-7 w-3 h-3 rounded-full bg-[#00d4ff] shadow-[0_0_12px_rgba(0,212,255,0.6)]" />
+                                        
+                                        <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
+                                            <h3 className="text-lg font-bold text-[#00d4ff]">
+                                                {item.title}
+                                            </h3>
+                                            <span className="text-xs px-2.5 py-1 rounded-full border border-[#00d4ff]/40 text-[#00d4ff] bg-[#00d4ff]/10">
+                                                {item.dates}
+                                            </span>
+                                        </div>
+                                        
+                                        <p className="text-white font-medium mb-1">
+                                            {item.organization}
+                                        </p>
+                                        
+                                        <p className="text-[#888] text-sm mb-4">
+                                            {item.location}
+                                        </p>
+                                        
+                                        <ul className="space-y-2">
+                                            {item.highlights.map((highlight, i) => (
+                                                <li key={i} className="text-[#a0a0a0] text-sm flex items-start gap-2">
+                                                    <span className="text-[#00d4ff] mt-1">•</span>
+                                                    <span>{highlight}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
                     </motion.div>
                 </div>

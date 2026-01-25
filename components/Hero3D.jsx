@@ -153,7 +153,7 @@ const GamifiedSocialIcons = () => {
             </svg>
         ),
         label: "GitHub",
-        href: "https://github.com",
+        href: "https://github.com/PaulAdutwum",
         color: "#00d4ff",
     };
 
