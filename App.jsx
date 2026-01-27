@@ -13,6 +13,7 @@ const ParticleField = lazy(() => import('./components/ParticleField'));
 // Import generated visual assets
 import portraitPlaceholder from './assets/lex6.jpeg';
 import recyclensPreview from './assets/recyc.png';
+import handshakePreview from './assets/handshake.png';
 import lumeoPreview from './assets/lumeo.png';
 import zerocostPreview from './assets/zerocost.png';
 import ratracerPreview from './assets/ratracer.png';
