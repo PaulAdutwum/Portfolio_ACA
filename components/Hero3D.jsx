@@ -400,19 +400,10 @@ const ExploreButton = ({ onClick }) => {
 // Main Hero3D Component
 const Hero3D = ({ scrollToSection }) => {
     return (
-        <section className="min-h-screen relative overflow-hidden flex items-center justify-center bg-[#0a0a0a]">
+        <section className="hero-section min-h-screen relative overflow-hidden flex items-center justify-center">
             {/* Subtle gradient background */}
             <div className="absolute inset-0 z-0">
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        background: `
-                            radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-                            radial-gradient(ellipse at 80% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
-                            radial-gradient(ellipse at 50% 50%, rgba(0, 30, 50, 1) 0%, #0a0a0a 70%)
-                        `,
-                    }}
-                />
+                <div className="hero-gradient absolute inset-0" />
             </div>
 
             {/* Subtle grid */}

@@ -13,9 +13,10 @@ const ParticleField = lazy(() => import('./components/ParticleField'));
 // Import generated visual assets
 import portraitPlaceholder from './assets/lex6.jpeg';
 import recyclensPreview from './assets/recyc.png';
-import handshakePreview from './assets/handshake.png';
 import lumeoPreview from './assets/lumeo.png';
 import zerocostPreview from './assets/zerocost.png';
+import ratracerPreview from './assets/ratracer.png';
+import lidarPreview from './assets/lidar.jpg';
 
 // Animated Name Component
 const AnimatedName = ({ name }) => {
@@ -153,11 +154,20 @@ const projects = [
     },
     {
         id: 4,
-        title: "Handshake AI",
-        description: "LLM security framework for detecting and preventing adversarial attacks on language models.",
+        title: "Autonomous Lidar Object Detection System",
+        description: "Embedded radar-style lidar scanning system with real-time visualization.",
         tech: [],
-        github: "#",
-        image: handshakePreview,
+        github: "https://github.com/PaulAdutwum/embedded-control-systems",
+        image: lidarPreview,
+        featured: false
+    },
+    {
+        id: 5,
+        title: "RayTracer",
+        description: "Interactive C++ ray tracer with BVH acceleration and real-time controls.",
+        tech: [],
+        github: "https://github.com/PaulAdutwum/RayTracer",
+        image: ratracerPreview,
         featured: false
     }
 ];
@@ -344,6 +354,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [contactStatus, setContactStatus] = useState('idle');
+    const [theme, setTheme] = useState('dark');
     // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora'
     const [backgroundMode, setBackgroundMode] = useState('matrix');
     
@@ -398,6 +409,10 @@ function App() {
         
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+    }, [theme]);
     
     useEffect(() => {
         // Update scroll indicator
@@ -413,6 +428,10 @@ function App() {
             ref.current.scrollIntoView({ behavior: 'smooth' });
             setActiveSection(sectionId);
         }
+    };
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
     };
 
     const handleContactSubmit = async (event) => {
@@ -497,6 +516,8 @@ function App() {
             <Navbar 
                 activeSection={activeSection} 
                 scrollToSection={scrollToSection} 
+                theme={theme}
+                onToggleTheme={toggleTheme}
             />
             
             {/* New 3D Hero Section with mobile-first design */}
@@ -521,7 +542,6 @@ function App() {
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
                                 <div className="relative">
-                                    <div className="absolute inset-0 bg-gradient-to-r from-[#00d4ff] to-[#ffd700] rounded-full blur-lg opacity-30"></div>
                                     <img 
                                         src={portraitPlaceholder} 
                                         alt="Paul Adutwum" 
@@ -801,6 +821,10 @@ function App() {
                                 </motion.div>
                             ))}
                         </div>
+                        
+                        <p className="text-center text-[#666] text-sm mt-6 italic">
+                            New internships coming soon.
+                        </p>
                         
                         <div className="mt-16">
                             <h3 className="text-3xl md:text-4xl font-bold text-center mb-6 gradient-text">
