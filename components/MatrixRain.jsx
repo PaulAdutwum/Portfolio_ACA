@@ -6,7 +6,7 @@ const MatrixRain = ({ opacity = 0.15 }) => {
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
-
+        let animationFrameId;
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -15,59 +15,53 @@ const MatrixRain = ({ opacity = 0.15 }) => {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Matrix characters (including some mathematical symbols for a researcher vibe)
-        const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789∑∏∫∂√∞≈≠≤≥±×÷αβγδεζηθλμπσφψω';
-        const charArray = chars.split('');
-
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-
-        // Array of drops - one per column
-        const drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
-
-        // Colors array for variety
-        const colors = [
-            'rgba(0, 212, 255, ',  // Cyber blue
-            'rgba(0, 255, 136, ',  // Cyber green
-            'rgba(255, 215, 0, ',  // Gold
-        ];
+        const lineCount = 50;
+        const lines = Array.from({ length: lineCount }, () => ({
+            y: Math.random() * canvas.height,
+            speed: 0.2 + Math.random() * 0.6,
+            thickness: 0.6 + Math.random() * 1.2,
+            phase: Math.random() * Math.PI * 2,
+            amplitude: 20 + Math.random() * 40
+        }));
 
         const draw = () => {
-            // Semi-transparent black to create fade effect
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.22)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.font = `${fontSize}px monospace`;
+            for (const line of lines) {
+                const offset = Math.sin(line.phase) * line.amplitude;
+                const startX = -100;
+                const endX = canvas.width + 100;
+                const y = line.y;
 
-            for (let i = 0; i < drops.length; i++) {
-                // Random character
-                const char = charArray[Math.floor(Math.random() * charArray.length)];
+                const gradient = ctx.createLinearGradient(startX, y, endX, y + 40);
+                gradient.addColorStop(0, 'rgba(0, 212, 255, 0)');
+                gradient.addColorStop(0.5, 'rgba(0, 212, 255, 0.18)');
+                gradient.addColorStop(1, 'rgba(0, 212, 255, 0)');
 
-                // Random color from palette
-                const colorBase = colors[Math.floor(Math.random() * colors.length)];
-                const alpha = Math.random() * 0.5 + 0.5;
-                ctx.fillStyle = colorBase + alpha + ')';
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = line.thickness;
+                ctx.beginPath();
+                ctx.moveTo(startX, y + offset);
+                ctx.lineTo(endX, y - offset * 0.6);
+                ctx.stroke();
 
-                // Draw character
-                ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+                line.y += line.speed;
+                line.phase += 0.008;
 
-                // Reset drop to top with random delay
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
+                if (line.y > canvas.height + 40) {
+                    line.y = -40;
                 }
-
-
-                drops[i]++;
             }
+
+            animationFrameId = window.requestAnimationFrame(draw);
         };
 
-        const interval = setInterval(draw, 33);
+        draw();
 
         return () => {
-            clearInterval(interval);
+            window.cancelAnimationFrame(animationFrameId);
             window.removeEventListener('resize', resizeCanvas);
         };
     }, []);
@@ -80,7 +74,6 @@ const MatrixRain = ({ opacity = 0.15 }) => {
         />
     );
 };
-
 
 export default MatrixRain;
 

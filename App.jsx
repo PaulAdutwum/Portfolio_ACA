@@ -18,6 +18,7 @@ import lumeoPreview from './assets/lumeo.png';
 import zerocostPreview from './assets/zerocost.png';
 import ratracerPreview from './assets/ratracer.png';
 import lidarPreview from './assets/lidar.jpg';
+import sideEdgeBackground from './assets/image1.png';
 
 // Animated Name Component
 const AnimatedName = ({ name }) => {
@@ -356,8 +357,8 @@ function App() {
     const [scrollProgress, setScrollProgress] = useState(0);
     const [contactStatus, setContactStatus] = useState('idle');
     const [theme, setTheme] = useState('dark');
-    // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora'
-    const [backgroundMode, setBackgroundMode] = useState('matrix');
+    // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora', 'rings'
+    const [backgroundMode, setBackgroundMode] = useState('rings');
     
     const heroRef = useRef(null);
     const aboutRef = useRef(null);
@@ -498,8 +499,16 @@ function App() {
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white relative">
             {/* Subtle animated side signals */}
-            <div className="side-signal side-signal-left" aria-hidden="true" />
-            <div className="side-signal side-signal-right" aria-hidden="true" />
+            <div
+                className="side-signal side-signal-left"
+                style={{ backgroundImage: `url(${sideEdgeBackground})` }}
+                aria-hidden="true"
+            />
+            <div
+                className="side-signal side-signal-right"
+                style={{ backgroundImage: `url(${sideEdgeBackground})` }}
+                aria-hidden="true"
+            />
             {/* Dynamic Animated Backgrounds - Only show on desktop for performance */}
             {!isMobile && (
                 <Suspense fallback={<div className="fixed inset-0 bg-[#0a0a0a]" />}>
@@ -679,9 +688,6 @@ function App() {
                         <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 border border-[#333] mt-8">
                             {/* Project Title */}
                             <div className="mb-8">
-                                <div className="inline-block px-3 py-1 bg-[#00ff88]/20 text-[#00ff88] text-sm rounded-full mb-4">
-                                    Winter 2025 • Coming Soon
-                                </div>
                                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
                                     RAG-Powered Academic Advising System
                                 </h3>
@@ -713,9 +719,6 @@ function App() {
                                     context-aware responses.
                                 </p>
                                 
-                                <p className="text-[#ffd700] italic">
-                                    More on this project coming soon!
-                                </p>
                             </div>
                             
                             {/* Button */}
@@ -796,13 +799,10 @@ function App() {
                                     viewport={{ once: true }}
                                     whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0, 212, 255, 0.08)' }}
                                 >
-                                    <div className="flex items-start justify-between gap-4 mb-3">
+                                        <div className="flex items-start justify-between gap-4 mb-3">
                                         <h3 className="text-lg md:text-xl font-bold text-[#00d4ff]">
                                             {item.organization}
                                         </h3>
-                                        <span className="text-xs md:text-sm text-[#ffd700] whitespace-nowrap">
-                                            {item.dates}
-                                        </span>
                                     </div>
                                     <p className="text-white font-medium mb-2">
                                         {item.title}
@@ -847,7 +847,7 @@ function App() {
                                                 </p>
                                             </div>
                                             <div className="text-sm text-[#a0a0a0]">
-                                                {item.location} • {item.dates}
+                                                {item.location}
                                             </div>
                                         </div>
                                     </div>
@@ -890,9 +890,6 @@ function App() {
                                         <h3 className="text-lg md:text-xl font-bold text-[#00d4ff]">
                                             {award.title}
                                         </h3>
-                                        <span className="text-xs md:text-sm text-[#ffd700] whitespace-nowrap">
-                                            {award.year}
-                                        </span>
                                     </div>
                                     <p className="text-white font-medium mb-2">
                                         {award.institution}

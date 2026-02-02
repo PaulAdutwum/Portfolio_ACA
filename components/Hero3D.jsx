@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 // Import rocket image
 import rocketImg from '../assets/rocket.jpg';
+import heroBg from '../assets/image1.png';
 
 // Spinning Rocket Component
 const SpinningRocket = () => {
@@ -265,17 +266,16 @@ const FloatingParticles = () => {
     );
 };
 
-// Matrix-style falling code rain (optimized for performance)
+// Subtle moving line field (no characters)
 const MatrixCodeRain = () => {
     const columns = 12; // Reduced from 20 for better performance
-    const chars = '01アイウエオカキクケコ';
 
     return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.15]">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.18]">
             {Array.from({ length: columns }).map((_, i) => (
                 <motion.div
                     key={i}
-                    className="absolute text-[#00d4ff] text-xs font-mono"
+                    className="absolute"
                     style={{
                         left: `${(i / columns) * 100}%`,
                         top: '-20%',
@@ -290,15 +290,12 @@ const MatrixCodeRain = () => {
                         ease: "linear",
                     }}
                 >
-                    {Array.from({ length: 15 }).map((_, j) => (
-                        <div
-                            key={j}
-                            className="leading-5"
-                            style={{ opacity: 1 - (j * 0.06) }}
-                        >
-                            {chars[Math.floor(Math.random() * chars.length)]}
-                        </div>
-                    ))}
+                    <div
+                        className="w-[2px] h-32 rounded-full"
+                        style={{
+                            background: 'linear-gradient(180deg, rgba(0,212,255,0) 0%, rgba(0,212,255,0.6) 50%, rgba(0,212,255,0) 100%)'
+                        }}
+                    />
                 </motion.div>
             ))}
         </div>
@@ -401,8 +398,20 @@ const ExploreButton = ({ onClick }) => {
 const Hero3D = ({ scrollToSection }) => {
     return (
         <section className="hero-section min-h-screen relative overflow-hidden flex items-center justify-center">
+            {/* Background image */}
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    backgroundImage: `url(${heroBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: 0.55,
+                }}
+            />
+            {/* Dark overlay for legibility */}
+            <div className="absolute inset-0 bg-[#050505]/60 z-0" />
             {/* Subtle gradient background */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 opacity-50">
                 <div className="hero-gradient absolute inset-0" />
             </div>
 
