@@ -415,9 +415,6 @@ const Hero3D = ({ scrollToSection }) => {
                 <div className="hero-gradient absolute inset-0" />
             </div>
 
-            {/* Subtle grid */}
-            <SubtleGrid />
-
             {/* Matrix code rain - subtle */}
             <MatrixCodeRain />
 

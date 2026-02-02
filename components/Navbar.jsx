@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = ({ activeSection, scrollToSection, theme, onToggleTheme }) => {
+const Navbar = ({ activeSection, scrollToSection }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -73,48 +73,28 @@ const Navbar = ({ activeSection, scrollToSection, theme, onToggleTheme }) => {
                                 )}
                             </motion.button>
                         ))}
-                        <motion.button
-                            onClick={onToggleTheme}
-                            className="px-3 py-2 text-sm font-medium text-[#a0a0a0] hover:text-[#00d4ff] border border-[#333] rounded-lg"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            aria-label="Toggle theme"
-                        >
-                            {theme === 'dark' ? 'Light' : 'Dark'}
-                        </motion.button>
                     </div>
 
                     {/* Mobile Menu Button - Enhanced visibility */}
-                    <div className="md:hidden flex items-center gap-2">
-                        <motion.button
-                            onClick={onToggleTheme}
-                            className="p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#333] text-[#a0a0a0]"
-                            whileTap={{ scale: 0.95 }}
-                            whileHover={{ borderColor: '#00d4ff', color: '#00d4ff' }}
-                            aria-label="Toggle theme"
+                    <motion.button
+                        className="md:hidden p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#00d4ff]/50 shadow-lg shadow-[#00d4ff]/20"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ borderColor: '#00d4ff', boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' }}
+                    >
+                        <svg
+                            className="w-6 h-6 text-[#00d4ff]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
                         >
-                            {theme === 'dark' ? '☀️' : '🌙'}
-                        </motion.button>
-                        <motion.button
-                            className="p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#00d4ff]/50 shadow-lg shadow-[#00d4ff]/20"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            whileTap={{ scale: 0.95 }}
-                            whileHover={{ borderColor: '#00d4ff', boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' }}
-                        >
-                            <svg
-                                className="w-6 h-6 text-[#00d4ff]"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                {isMobileMenuOpen ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
-                                )}
-                            </svg>
-                        </motion.button>
-                    </div>
+                            {isMobileMenuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </motion.button>
                 </div>
 
                 {/* Mobile Menu - Enhanced visibility with solid background */}

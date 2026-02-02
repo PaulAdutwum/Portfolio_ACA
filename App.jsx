@@ -356,7 +356,6 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [contactStatus, setContactStatus] = useState('idle');
-    const [theme, setTheme] = useState('dark');
     // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora', 'rings'
     const [backgroundMode, setBackgroundMode] = useState('rings');
     
@@ -412,9 +411,6 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-    }, [theme]);
     
     useEffect(() => {
         // Update scroll indicator
@@ -432,9 +428,6 @@ function App() {
         }
     };
 
-    const toggleTheme = () => {
-        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-    };
 
     const handleContactSubmit = async (event) => {
         event.preventDefault();
@@ -501,12 +494,16 @@ function App() {
             {/* Subtle animated side signals */}
             <div
                 className="side-signal side-signal-left"
-                style={{ backgroundImage: `url(${sideEdgeBackground})` }}
+                style={{
+                    backgroundImage: `linear-gradient(180deg, rgba(5,5,5,0.85), rgba(5,5,5,0.85)), url(${sideEdgeBackground})`
+                }}
                 aria-hidden="true"
             />
             <div
                 className="side-signal side-signal-right"
-                style={{ backgroundImage: `url(${sideEdgeBackground})` }}
+                style={{
+                    backgroundImage: `linear-gradient(180deg, rgba(5,5,5,0.85), rgba(5,5,5,0.85)), url(${sideEdgeBackground})`
+                }}
                 aria-hidden="true"
             />
             {/* Dynamic Animated Backgrounds - Only show on desktop for performance */}
@@ -526,8 +523,6 @@ function App() {
             <Navbar 
                 activeSection={activeSection} 
                 scrollToSection={scrollToSection} 
-                theme={theme}
-                onToggleTheme={toggleTheme}
             />
             
             {/* New 3D Hero Section with mobile-first design */}
