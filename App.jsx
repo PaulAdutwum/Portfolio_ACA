@@ -11,7 +11,7 @@ const AnimatedBackground = lazy(() => import('./components/AnimatedBackground'))
 const ParticleField = lazy(() => import('./components/ParticleField'));
 
 // Import generated visual assets
-import portraitPlaceholder from './assets/lex6.jpeg';
+import portraitPlaceholder from './assets/LexisProfile.jpeg';
 import recyclensPreview from './assets/recyc.png';
 import handshakePreview from './assets/handshake.png';
 import lumeoPreview from './assets/lumeo.png';
@@ -545,7 +545,7 @@ function App() {
                         </h2>
                         
                         <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div className="order-2 md:order-1">
+                            <div className="order-1 md:order-2">
                                 <div className="relative">
                                     <img 
                                         src={portraitPlaceholder} 
@@ -555,7 +555,7 @@ function App() {
                                 </div>
                             </div>
                             
-                            <div className="order-1 md:order-2">
+                            <div className="order-2 md:order-1">
                                 <h3 className="text-3xl font-bold mb-6 text-[#00d4ff]">
                                     Hi there! <span className="inline-block animate-bounce">👋</span>
                                 </h3>
