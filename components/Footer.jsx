@@ -63,10 +63,10 @@ const Footer = () => {
             viewport={{ once: true }}
         >
             {/* Subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#00d4ff]/5 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#b0b8c4]/5 via-transparent to-transparent pointer-events-none" />
             
             {/* Top border glow */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00d4ff]/40 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#b0b8c4]/40 to-transparent" />
             
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto">
@@ -77,7 +77,7 @@ const Footer = () => {
                     >
                         <p className="text-[#8b949e] text-lg tracking-wide">
                             © 2025{' '}
-                            <span className="text-[#00d4ff] font-semibold hover:text-[#ffd700] transition-colors cursor-pointer">
+                            <span className="text-[#b0b8c4] font-semibold hover:text-[#ffd700] transition-colors cursor-pointer">
                                 Paul Adutwum
                             </span>
                             . All rights reserved.
@@ -95,7 +95,7 @@ const Footer = () => {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-12 h-12 flex items-center justify-center rounded-lg border border-[#30363d] bg-[#0d1117]/80 text-[#8b949e] hover:text-[#00d4ff] hover:border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 transition-all duration-300"
+                                className="w-12 h-12 flex items-center justify-center rounded-lg border border-[#30363d] bg-[#0d1117]/80 text-[#8b949e] hover:text-[#b0b8c4] hover:border-[#b0b8c4]/50 hover:bg-[#b0b8c4]/10 transition-all duration-300"
                                 variants={socialVariants}
                                 custom={index}
                                 initial="hidden"
@@ -103,7 +103,7 @@ const Footer = () => {
                                 whileHover={{ 
                                     scale: 1.1,
                                     y: -3,
-                                    boxShadow: "0 8px 25px rgba(0, 212, 255, 0.25)"
+                                    boxShadow: "0 8px 25px rgba(176, 184, 196, 0.25)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
                                 aria-label={link.name}

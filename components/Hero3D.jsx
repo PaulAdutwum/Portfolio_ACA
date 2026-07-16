@@ -1,99 +1,6 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
-// Import rocket image
-import rocketImg from '../assets/rocket.jpg';
-import heroBg from '../assets/image1.png';
-
-// Spinning Rocket Component
-const SpinningRocket = () => {
-    return (
-        <motion.div
-            className="absolute top-20 left-4 sm:top-24 sm:left-8 z-20"
-            initial={{ opacity: 0, scale: 0, rotate: -180 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{
-                duration: 1,
-                delay: 0.3,
-                type: "spring",
-                stiffness: 200
-            }}
-        >
-            <motion.div
-                className="relative"
-                animate={{
-                    rotate: 360,
-                    y: [0, -8, 0],
-                }}
-                transition={{
-                    rotate: {
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear"
-                    },
-                    y: {
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }
-                }}
-            >
-                {/* Glowing ring around rocket */}
-                <motion.div
-                    className="absolute -inset-2 rounded-full"
-                    style={{
-                        background: 'conic-gradient(from 0deg, #00d4ff, #00ff88, #ffd700, #00d4ff)',
-                        opacity: 0.6,
-                    }}
-                    animate={{ rotate: -360 }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-                />
-
-                {/* Inner glow */}
-                <div className="absolute inset-0 rounded-full bg-[#00d4ff] blur-lg opacity-40 scale-110" />
-
-                {/* Rocket image */}
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 border-[#00d4ff]/70 shadow-lg shadow-[#00d4ff]/30">
-                    <img
-                        src={rocketImg}
-                        alt="Rocket"
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Sparkle effects */}
-                <motion.div
-                    className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full"
-                    animate={{
-                        scale: [0, 1, 0],
-                        opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: 0,
-                    }}
-                />
-                <motion.div
-                    className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#ffd700] rounded-full"
-                    animate={{
-                        scale: [0, 1, 0],
-                        opacity: [0, 1, 0],
-                    }}
-                    transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: 1,
-                    }}
-                />
-            </motion.div>
-        </motion.div>
-    );
-};
+import NetworkGraph from './NetworkGraph';
 
 // Clean Social Icon
 const AnimatedSocialIcon = ({ icon, label, href, color, delay }) => {
@@ -144,7 +51,7 @@ const GamifiedSocialIcons = () => {
         ),
         label: "LinkedIn",
         href: "https://linkedin.com",
-        color: "#0077b5",
+        color: "#b0b8c4",
     };
 
     const gitHub = {
@@ -155,7 +62,7 @@ const GamifiedSocialIcons = () => {
         ),
         label: "GitHub",
         href: "https://github.com/PaulAdutwum",
-        color: "#00d4ff",
+        color: "#b0b8c4",
     };
 
     return (
@@ -183,7 +90,7 @@ const GamifiedSocialIcons = () => {
     );
 };
 
-// Typing animation for name - optimized for faster loading
+// Typing animation for name - starts right as the loading screen fades out
 const TypewriterName = ({ name }) => {
     const [displayText, setDisplayText] = useState('');
     const [showCursor, setShowCursor] = useState(true);
@@ -201,7 +108,7 @@ const TypewriterName = ({ name }) => {
                 }
             }, 70); // Faster typing speed (was 100)
             return () => clearInterval(interval);
-        }, 200); // Faster start (was 500)
+        }, 1500); // Starts as the loading screen (1.5s) fades out
         return () => clearTimeout(timeout);
     }, [name]);
 
@@ -212,57 +119,13 @@ const TypewriterName = ({ name }) => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
         >
-            <span
-                className="text-[#00d4ff]"
-                style={{
-                    textShadow: '0 0 40px rgba(0, 212, 255, 0.6), 0 0 80px rgba(0, 212, 255, 0.3)',
-                }}
-            >
+            <span className="text-[#b0b8c4]">
                 {displayText}
             </span>
             {showCursor && (
-                <span className="animate-pulse text-[#00d4ff]">|</span>
+                <span className="animate-pulse text-[#b0b8c4]">|</span>
             )}
         </motion.h1>
-    );
-};
-
-// Floating particles for depth - subtle and professional (reduced for performance)
-const FloatingParticles = () => {
-    const particles = Array.from({ length: 15 }, (_, i) => ({
-        id: i,
-        size: Math.random() * 3 + 1,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        duration: Math.random() * 15 + 15,
-        delay: Math.random() * 10,
-    }));
-
-    return (
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {particles.map((p) => (
-                <motion.div
-                    key={p.id}
-                    className="absolute rounded-full bg-[#00d4ff]"
-                    style={{
-                        width: p.size,
-                        height: p.size,
-                        left: `${p.x}%`,
-                        top: `${p.y}%`,
-                    }}
-                    animate={{
-                        y: [0, -30, 0],
-                        opacity: [0.1, 0.4, 0.1],
-                    }}
-                    transition={{
-                        duration: p.duration,
-                        repeat: Infinity,
-                        delay: p.delay,
-                        ease: "easeInOut",
-                    }}
-                />
-            ))}
-        </div>
     );
 };
 
@@ -293,7 +156,7 @@ const MatrixCodeRain = () => {
                     <div
                         className="w-[2px] h-32 rounded-full"
                         style={{
-                            background: 'linear-gradient(180deg, rgba(0,212,255,0) 0%, rgba(0,212,255,0.6) 50%, rgba(0,212,255,0) 100%)'
+                            background: 'linear-gradient(180deg, rgba(176,184,196,0) 0%, rgba(176,184,196,0.6) 50%, rgba(176,184,196,0) 100%)'
                         }}
                     />
                 </motion.div>
@@ -309,8 +172,8 @@ const SubtleGrid = () => {
             className="absolute inset-0 pointer-events-none opacity-[0.03]"
             style={{
                 backgroundImage: `
-                    linear-gradient(to right, #00d4ff 1px, transparent 1px),
-                    linear-gradient(to bottom, #00d4ff 1px, transparent 1px)
+                    linear-gradient(to right, #b0b8c4 1px, transparent 1px),
+                    linear-gradient(to bottom, #b0b8c4 1px, transparent 1px)
                 `,
                 backgroundSize: '60px 60px',
             }}
@@ -345,7 +208,7 @@ const WelcomeText = () => {
                                 }}
                                 whileHover={{
                                     scale: 1.2,
-                                    color: '#00d4ff',
+                                    color: '#b0b8c4',
                                     transition: { duration: 0.1 }
                                 }}
                             >
@@ -358,7 +221,7 @@ const WelcomeText = () => {
 
             {/* Subtle underline */}
             <motion.div
-                className="h-[1px] mx-auto mt-6 bg-gradient-to-r from-transparent via-[#00d4ff]/50 to-transparent"
+                className="h-[1px] mx-auto mt-6 bg-gradient-to-r from-transparent via-[#b0b8c4]/50 to-transparent"
                 initial={{ width: 0 }}
                 animate={{ width: '150px' }}
                 transition={{ delay: 1.8, duration: 0.6 }}
@@ -372,7 +235,7 @@ const ExploreButton = ({ onClick }) => {
     return (
         <motion.button
             onClick={onClick}
-            className="w-14 h-14 rounded-full bg-transparent text-[#00d4ff] flex items-center justify-center mx-auto border border-[#00d4ff]/50 hover:bg-[#00d4ff]/10 hover:border-[#00d4ff] transition-all duration-300"
+            className="w-14 h-14 rounded-full bg-transparent text-[#b0b8c4] flex items-center justify-center mx-auto border border-[#b0b8c4]/50 hover:bg-[#b0b8c4]/10 hover:border-[#b0b8c4] transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.6, duration: 0.4 }}
@@ -398,31 +261,16 @@ const ExploreButton = ({ onClick }) => {
 const Hero3D = ({ scrollToSection }) => {
     return (
         <section className="hero-section min-h-screen relative overflow-hidden flex items-center justify-center">
-            {/* Background image */}
-            <div
-                className="absolute inset-0 z-0"
-                style={{
-                    backgroundImage: `url(${heroBg})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    opacity: 0.55,
-                }}
-            />
-            {/* Dark overlay for legibility */}
-            <div className="absolute inset-0 bg-[#050505]/60 z-0" />
-            {/* Subtle gradient background */}
-            <div className="absolute inset-0 z-0 opacity-50">
+            {/* Completely dark base, matching the rest of the site */}
+            <div className="absolute inset-0 z-0">
                 <div className="hero-gradient absolute inset-0" />
             </div>
 
+            {/* Faint drifting network graph */}
+            <NetworkGraph className="z-0 opacity-70" />
+
             {/* Matrix code rain - subtle */}
             <MatrixCodeRain />
-
-            {/* Floating particles - more subtle */}
-            <FloatingParticles />
-
-            {/* Spinning Rocket in upper left */}
-            <SpinningRocket />
 
             {/* Main content */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -452,7 +300,7 @@ const Hero3D = ({ scrollToSection }) => {
             >
                 <motion.button
                     onClick={() => scrollToSection('about')}
-                    className="flex flex-col items-center gap-2 text-[#666] hover:text-[#00d4ff] transition-colors"
+                    className="flex flex-col items-center gap-2 text-[#666] hover:text-[#b0b8c4] transition-colors"
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                 >

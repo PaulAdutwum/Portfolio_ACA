@@ -11,8 +11,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
         { id: 'research', label: 'Research' },
         { id: 'projects', label: 'Projects' },
         { id: 'community', label: 'Community' },
-        { id: 'contact', label: 'Contact' },
-        { id: 'hobbies', label: 'Interests' }
+        { id: 'contact', label: 'Contact' }
     ];
 
     useEffect(() => {
@@ -55,8 +54,8 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                                 key={item.id}
                                 onClick={() => handleNavClick(item.id)}
                                 className={`relative px-3 py-2 text-sm font-medium transition-colors ${activeSection === item.id
-                                    ? 'text-[#00d4ff]'
-                                    : 'text-[#a0a0a0] hover:text-[#00d4ff]'
+                                    ? 'text-[#b0b8c4]'
+                                    : 'text-[#a0a0a0] hover:text-[#b0b8c4]'
                                     }`}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -64,7 +63,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                                 {item.label}
                                 {activeSection === item.id && (
                                     <motion.div
-                                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d4ff]"
+                                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#b0b8c4]"
                                         layoutId="activeTab"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
@@ -77,13 +76,13 @@ const Navbar = ({ activeSection, scrollToSection }) => {
 
                     {/* Mobile Menu Button - Enhanced visibility */}
                     <motion.button
-                        className="md:hidden p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#00d4ff]/50 shadow-lg shadow-[#00d4ff]/20"
+                        className="md:hidden p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#b0b8c4]/50 shadow-lg shadow-[#b0b8c4]/20"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         whileTap={{ scale: 0.95 }}
-                        whileHover={{ borderColor: '#00d4ff', boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' }}
+                        whileHover={{ borderColor: '#b0b8c4', boxShadow: '0 0 20px rgba(176, 184, 196, 0.3)' }}
                     >
                         <svg
-                            className="w-6 h-6 text-[#00d4ff]"
+                            className="w-6 h-6 text-[#b0b8c4]"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -113,8 +112,8 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                                         key={item.id}
                                         onClick={() => handleNavClick(item.id)}
                                         className={`block w-full text-left px-4 py-3 rounded-lg transition-all font-medium ${activeSection === item.id
-                                            ? 'bg-[#00d4ff] text-[#0a0a0a]'
-                                            : 'text-white hover:bg-[#1a1a1a] hover:text-[#00d4ff]'
+                                            ? 'bg-[#b0b8c4] text-[#0a0a0a]'
+                                            : 'text-white hover:bg-[#1a1a1a] hover:text-[#b0b8c4]'
                                             }`}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
