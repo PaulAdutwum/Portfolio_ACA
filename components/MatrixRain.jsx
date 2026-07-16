@@ -36,9 +36,9 @@ const MatrixRain = ({ opacity = 0.15 }) => {
                 const y = line.y;
 
                 const gradient = ctx.createLinearGradient(startX, y, endX, y + 40);
-                gradient.addColorStop(0, 'rgba(0, 212, 255, 0)');
-                gradient.addColorStop(0.5, 'rgba(0, 212, 255, 0.18)');
-                gradient.addColorStop(1, 'rgba(0, 212, 255, 0)');
+                gradient.addColorStop(0, 'rgba(176, 184, 196, 0)');
+                gradient.addColorStop(0.5, 'rgba(176, 184, 196, 0.18)');
+                gradient.addColorStop(1, 'rgba(176, 184, 196, 0)');
 
                 ctx.strokeStyle = gradient;
                 ctx.lineWidth = line.thickness;

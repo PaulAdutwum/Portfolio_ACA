@@ -12,13 +12,7 @@ const ParticleField = lazy(() => import('./components/ParticleField'));
 
 // Import generated visual assets
 import portraitPlaceholder from './assets/LexisProfile.jpeg';
-import recyclensPreview from './assets/recyc.png';
 import handshakePreview from './assets/handshake.png';
-import lumeoPreview from './assets/lumeo.png';
-import zerocostPreview from './assets/zerocost.png';
-import ratracerPreview from './assets/ratracer.png';
-import lidarPreview from './assets/lidar.jpg';
-import sideEdgeBackground from './assets/image1.png';
 
 // Animated Name Component
 const AnimatedName = ({ name }) => {
@@ -82,13 +76,13 @@ const AnimatedName = ({ name }) => {
                     className={`inline-block ${letter === ' ' ? 'w-4 md:w-6' : ''}`}
                     style={{
                         background: letter !== ' ' 
-                            ? 'linear-gradient(90deg, #00d4ff, #ffd700, #00ff88, #00d4ff, #ffd700)'
+                            ? 'linear-gradient(90deg, #b0b8c4, #ffd700, #00ff88, #b0b8c4, #ffd700)'
                             : 'transparent',
                         backgroundSize: '200% auto',
                         WebkitBackgroundClip: letter !== ' ' ? 'text' : 'unset',
                         WebkitTextFillColor: letter !== ' ' ? 'transparent' : 'unset',
                         backgroundClip: letter !== ' ' ? 'text' : 'unset',
-                        textShadow: letter !== ' ' ? '0 0 30px rgba(0, 212, 255, 0.5)' : 'none'
+                        textShadow: letter !== ' ' ? '0 0 30px rgba(176, 184, 196, 0.5)' : 'none'
                     }}
                     whileHover={{
                         scale: 1.2,
@@ -100,7 +94,7 @@ const AnimatedName = ({ name }) => {
                         style={{
                             display: 'inline-block',
                             background: letter !== ' ' 
-                                ? 'linear-gradient(90deg, #00d4ff, #ffd700, #00ff88, #00d4ff)'
+                                ? 'linear-gradient(90deg, #b0b8c4, #ffd700, #00ff88, #b0b8c4)'
                                 : 'transparent',
                             backgroundSize: '300% auto',
                             WebkitBackgroundClip: letter !== ' ' ? 'text' : 'unset',
@@ -125,51 +119,93 @@ const AnimatedName = ({ name }) => {
     );
 };
 
-// Project data
+// Project data — descriptions, use cases, and stack details pulled
+// directly from each project's GitHub README.
 const projects = [
     {
         id: 1,
         title: "ZeroCost",
-        description: "Full-stack platform that aggregates free food, events, and community opportunities on an interactive map.",
-        tech: [],
+        tagline: "Distributed platform aggregating free food, events & opportunities on a live map.",
+        description: "I built ZeroCost because I wanted to learn how to design and orchestrate a real distributed system — coordinating services written in four different languages — and to solve a problem I kept running into on campus: free food, events, and giveaways scattered across a dozen disconnected group chats and flyers. The result is a full-stack platform with a Next.js/Mapbox frontend, a Java Spring Boot API, a Go microservice running concurrent scrapers, and a custom C++ engine for high-performance ranking — all containerized with Docker and backed by PostgreSQL and Redis.",
+        useCase: "Helps students and low-income residents discover free meals, events, and giveaways in real time by aggregating dozens of scattered sources into one ranked, geolocated feed.",
+        highlights: [
+            "Microservices architecture spanning 4 languages (TS, Java, Go, C++)",
+            "Concurrent Go scrapers aggregating live sources",
+            "Custom C++ scoring/ranking engine",
+            "Dockerized multi-service deployment with PostgreSQL + Redis"
+        ],
+        stackFlow: ["Next.js + Mapbox (Frontend)", "Spring Boot API (Java)", "Go Scraper (concurrent)", "C++ Ranking Engine", "PostgreSQL + Redis"],
+        tech: ["Next.js", "TypeScript", "Java", "Spring Boot", "Go", "C++", "PostgreSQL", "Redis", "Docker"],
         github: "https://github.com/PaulAdutwum/ZeroCost",
-        image: zerocostPreview,
         featured: false
     },
     {
         id: 2,
         title: "RecycLens",
-        description: "Real-time computer vision platform that classifies waste into 12 material categories using a custom-trained CNN. Built with PyTorch, FastAPI, and Next.js to transform camera input into actionable recycling guidance.",
-        tech: [],
+        tagline: "Real-time computer vision that classifies waste into 12 categories to cut recycling contamination.",
+        description: "I built RecycLens because I wanted to learn how to take a computer vision model out of a notebook and into a real, usable product — and to help solve a problem I cared about: how often recycling gets contaminated simply because people aren't sure which bin an item belongs in. I trained a ResNet-18 CNN via transfer learning in PyTorch, exported it to TorchScript, and served it through a FastAPI backend to a Next.js client, with classification history stored in MongoDB and a live demo deployed on Vercel.",
+        useCase: "Lets anyone point a camera at an item and instantly get sorting guidance, reducing contamination in recycling streams for households and campus recycling programs.",
+        highlights: [
+            "Custom-trained ResNet-18 CNN, 12-class waste classification",
+            "TorchScript export for low-latency inference",
+            "FastAPI inference server + Next.js client",
+            "Live production demo deployed on Vercel"
+        ],
+        stackFlow: ["React/Next.js Camera UI", "FastAPI Inference Server", "PyTorch ResNet-18 (TorchScript)", "MongoDB (history)"],
+        tech: ["PyTorch", "FastAPI", "Next.js", "TypeScript", "MongoDB", "Computer Vision"],
         github: "https://github.com/PaulAdutwum/RecycLens",
-        image: recyclensPreview,
+        demo: "https://recyc-lens.vercel.app/",
         featured: false
     },
     {
         id: 3,
         title: "Lumeo AI",
-        description: "Mental health support platform with AI-powered chat, calming imagery, and personalized video recommendations.",
-        tech: [],
+        tagline: "AI-powered mental wellness companion blending empathetic chat, generative art, and curated resources.",
+        description: "I built Lumeo because I wanted to learn how to design a responsible, production-style AI application — combining conversation, generated imagery, and semantic search into something that actually helps people — after seeing how many of my peers needed accessible mental health support and didn't know where to start. It pairs GPT-4 for empathy-driven conversation with DALL·E for therapeutic imagery, uses Pinecone for semantic search over self-care and mental-health resources, and was later migrated from Firebase to PostgreSQL and AWS S3 for improved performance and scale.",
+        useCase: "Gives users a private, always-available space to talk through emotions, get calming visuals, guided breathing exercises, and be routed to real mental-health resources.",
+        highlights: [
+            "GPT-4 conversational AI tuned for empathy",
+            "DALL·E-generated therapeutic imagery",
+            "Pinecone semantic search for resource matching",
+            "Migrated from Firebase to PostgreSQL + AWS S3"
+        ],
+        stackFlow: ["React/TypeScript Client", "OpenAI GPT-4 + DALL·E", "Pinecone Vector Search", "PostgreSQL + AWS S3"],
+        tech: ["TypeScript", "OpenAI API", "Pinecone", "PostgreSQL", "AWS"],
         github: "https://github.com/PaulAdutwum/Lumeo_Mental_Health",
-        image: lumeoPreview,
         featured: false
     },
     {
         id: 4,
         title: "Autonomous Lidar Object Detection System",
-        description: "Embedded radar-style lidar scanning system with real-time visualization.",
-        tech: [],
+        tagline: "Bare-metal C control system for real-time obstacle mapping with sub-50ms response.",
+        description: "I built this because I wanted to learn how firmware, hardware, and control theory actually intersect — not just in theory, but by getting a real sensor, motor, and microcontroller to work together reliably in a safety-critical loop. Interrupt-driven C firmware fuses Lidar and ultrasonic sensor data over UART/GPIO, drives a 180° servo sweep via PWM, and triggers synchronized buzzer, LED, and motor responses, with live telemetry streamed to a custom Python GUI for real-time monitoring and validation.",
+        useCase: "A safety-critical obstacle-avoidance reference platform — the same closed-loop sensing-to-actuation pattern used in robotics, autonomous vehicles, and industrial safety systems.",
+        highlights: [
+            "Interrupt Service Routines for sub-50ms deterministic response",
+            "180° PWM-driven servo scanning",
+            "Multi-sensor fusion (Lidar + ultrasonic) over UART/GPIO",
+            "Custom Python GUI for live telemetry & validation"
+        ],
+        stackFlow: ["Lidar + Ultrasonic Sensors", "C Firmware (ISR / State Machine)", "PWM Servo + Actuators", "Python Telemetry GUI"],
+        tech: ["C", "Embedded Systems", "UART", "PWM", "Python"],
         github: "https://github.com/PaulAdutwum/embedded-control-systems",
-        image: lidarPreview,
         featured: false
     },
     {
         id: 5,
         title: "RayTracer",
-        description: "Interactive C++ ray tracer with BVH acceleration and real-time controls.",
-        tech: [],
+        tagline: "Multithreaded C++20 ray tracer with BVH acceleration and a live ImGui control panel.",
+        description: "I built this ray tracer because I wanted to learn computer graphics from first principles — how a renderer actually turns math into an image — instead of just using an engine. Implementing ray-sphere and ray-triangle intersection (Möller–Trumbore), a BVH acceleration structure, and PBR-style shading with Schlick Fresnel myself meant understanding the same techniques that power production renderers and game engines, all wrapped in a real-time, multithreaded C++20 app with soft shadows and a live Dear ImGui control panel.",
+        useCase: "A from-scratch demonstration of core computer graphics and systems-programming fundamentals — the same rendering math (BVH, PBR shading) that powers production renderers and game engines.",
+        highlights: [
+            "BVH acceleration structure for fast ray-scene intersection",
+            "PBR-style shading with roughness/metallic + Fresnel",
+            "Soft shadows via area-light sampling",
+            "Real-time multithreaded CPU rendering + ImGui controls"
+        ],
+        stackFlow: ["Raylib Window/Input", "BVH + Ray-Scene Intersection", "PBR Shading Engine", "ImGui Live Control Panel"],
+        tech: ["C++", "CMake", "Raylib", "Dear ImGui"],
         github: "https://github.com/PaulAdutwum/RayTracer",
-        image: ratracerPreview,
         featured: false
     }
 ];
@@ -329,35 +365,13 @@ const hackathons = [
     }
 ];
 
-// Hobbies data - with videos from public folder
-const hobbies = [
-    {
-        id: 1,
-        title: "Basketball",
-        icon: "🏀",
-        video: "/basketball.mp4"
-    },
-    {
-        id: 2,
-        title: "Music",
-        icon: "🎵",
-        video: "/music.mp4"
-    },
-    {
-        id: 3,
-        title: "Soccer",
-        icon: "⚽",
-        video: "/soccer.mp4"
-    }
-];
-
 function App() {
     const [activeSection, setActiveSection] = useState('hero');
     const [isLoading, setIsLoading] = useState(true);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [contactStatus, setContactStatus] = useState('idle');
     // Background mode: 'matrix', 'particles', 'orbs', 'mesh', 'aurora', 'rings'
-    const [backgroundMode, setBackgroundMode] = useState('rings');
+    const [backgroundMode, setBackgroundMode] = useState('orbs');
     
     const heroRef = useRef(null);
     const aboutRef = useRef(null);
@@ -366,8 +380,7 @@ function App() {
     const awardsRef = useRef(null);
     const communityRef = useRef(null);
     const contactRef = useRef(null);
-    const hobbiesRef = useRef(null);
-    
+
     const sectionRefs = {
         hero: heroRef,
         about: aboutRef,
@@ -375,8 +388,7 @@ function App() {
         projects: projectsRef,
         awards: awardsRef,
         community: communityRef,
-        contact: contactRef,
-        hobbies: hobbiesRef
+        contact: contactRef
     };
     
     useEffect(() => {
@@ -495,14 +507,14 @@ function App() {
             <div
                 className="side-signal side-signal-left"
                 style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(5,5,5,0.85), rgba(5,5,5,0.85)), url(${sideEdgeBackground})`
+                    backgroundImage: `linear-gradient(180deg, rgba(176,184,196,0.10) 0%, rgba(5,5,5,0.92) 35%, rgba(5,5,5,0.92) 65%, rgba(255,215,0,0.08) 100%)`
                 }}
                 aria-hidden="true"
             />
             <div
                 className="side-signal side-signal-right"
                 style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(5,5,5,0.85), rgba(5,5,5,0.85)), url(${sideEdgeBackground})`
+                    backgroundImage: `linear-gradient(180deg, rgba(176,184,196,0.10) 0%, rgba(5,5,5,0.92) 35%, rgba(5,5,5,0.92) 65%, rgba(255,215,0,0.08) 100%)`
                 }}
                 aria-hidden="true"
             />
@@ -550,33 +562,53 @@ function App() {
                                     <img 
                                         src={portraitPlaceholder} 
                                         alt="Paul Adutwum" 
-                                        className="relative rounded-full w-80 h-80 mx-auto object-cover border-4 border-[#00d4ff] glow-effect"
+                                        className="relative rounded-full w-80 h-80 mx-auto object-cover border-4 border-[#b0b8c4] glow-effect"
                                     />
                                 </div>
                             </div>
                             
                             <div className="order-2 md:order-1">
-                                <h3 className="text-3xl font-bold mb-6 text-[#00d4ff]">
+                                <h3 className="text-3xl font-bold mb-6 text-[#b0b8c4]">
                                     Hi there! <span className="inline-block animate-bounce">👋</span>
                                 </h3>
                                 
                                 <div className="space-y-5 text-[#c0c0c0] leading-relaxed text-lg">
                                     <p>
-                                        Welcome to my portfolio! My name is <span className="text-[#00d4ff] font-semibold">Paul Adutwum</span>. 
-                                        I'm currently based in the United States, but I'm originally from <span className="text-[#00d4ff]">Ghana</span>.
+                                        I'm <span className="text-[#b0b8c4] font-semibold">Paul Adutwum</span> — a first-generation student at{' '}
+                                        <span className="text-[#b0b8c4]">Columbia University</span> studying{' '}
+                                        <span className="text-[#b0b8c4]">Electrical and Computer Engineering</span>.
                                     </p>
-                                    
+
                                     <p>
-                                        I'm a first-generation student at <span className="text-[#00d4ff]">Bates College</span>, studying{' '}
-                                        <span className="text-[#00d4ff]">Mathematics</span> and <span className="text-[#00d4ff]">Physics</span>{' '}
-                                        with a minor in <span className="text-[#00d4ff]">Computational Studies</span>. I've always enjoyed 
-                                        figuring out how things work, and right now, I'm exploring <span className="text-[#00d4ff]">AI</span>{' '}
-                                        and <span className="text-[#00d4ff]">embedded systems</span> through personal projects.
+                                        Before Columbia, I completed my pre-engineering program at{' '}
+                                        <span className="text-[#b0b8c4]">Bates College</span>, where I studied{' '}
+                                        <span className="text-[#b0b8c4]">Mathematics</span> and <span className="text-[#b0b8c4]">Physics</span>{' '}
+                                        with a minor in <span className="text-[#b0b8c4]">Computer Science</span>.
                                     </p>
-                                    
+
                                     <p>
-                                        Beyond academics, I love staying active and unwinding with music. You'll likely find me on the{' '}
-                                        soccer field, but I'm always happy to connect and chat — so feel free to reach out! 🚀
+                                        Some things I've done: published combinatorics research in a peer-reviewed journal, won a national
+                                        data science competition, built embedded firmware for autonomous detection systems, and attended
+                                        the <span className="text-[#b0b8c4]">Morgan Stanley Equity Derivatives Summit</span> as one of 30
+                                        selected from 1,000+ applicants.
+                                    </p>
+
+                                    <p>
+                                        I tend to pick up something new and keep pulling the thread until it makes sense. I'm currently
+                                        learning <span className="text-[#b0b8c4]">Verilog</span>, <span className="text-[#b0b8c4]">SystemVerilog</span>,{' '}
+                                        <span className="text-[#b0b8c4]">PCB design</span>, <span className="text-[#b0b8c4]">machine learning</span>,
+                                        and <span className="text-[#b0b8c4]">quantitative finance</span>.
+                                    </p>
+
+                                    <p>
+                                        I'm also working on <span className="text-[#b0b8c4]">RecycLens</span> — a computer vision system for
+                                        automated waste classification, exploring how it becomes real sorting infrastructure, and going
+                                        deeper into quantitative systems and financial modeling.
+                                    </p>
+
+                                    <p>
+                                        Outside of work I play soccer, listen to a lot of music, and am always happy to connect with people
+                                        working on interesting problems. 🚀
                                     </p>
                                 </div>
                             </div>
@@ -608,7 +640,7 @@ function App() {
                                 <p className="text-[#a0a0a0] text-sm">
                                     Paul Adutwum, Hopper Clark, Ro Emerson, Alexandra Sheydvasser, Arseniy Sheydvasser, Axelle Tougouma
                                 </p>
-                                <p className="text-[#00d4ff]/70 text-sm mt-1">
+                                <p className="text-[#b0b8c4]/70 text-sm mt-1">
                                     Published in INTEGERS Journal, 2025
                                 </p>
                             </div>
@@ -617,11 +649,11 @@ function App() {
                             <div className="space-y-4 text-[#c0c0c0] leading-relaxed text-lg mb-8">
                                 <p>
                                     In my first year at Bates College, I worked as a research assistant with{' '}
-                                    <span className="text-[#00d4ff]">Professor Senia Sheydvasser</span> in the mathematics department. 
+                                    <span className="text-[#b0b8c4]">Professor Senia Sheydvasser</span> in the mathematics department. 
                                     I was curious about how mathematical ideas could be explored and tested through computation, 
                                     even though I hadn’t yet taken many advanced classes or done formal research. Joining a 
                                     project focused on abstract combinatorics and number theory—especially the{' '}
-                                    <span className="text-[#00d4ff]">Gibbs conjecture</span> and <span className="text-[#00d4ff]">Ulam sequences</span>—felt 
+                                    <span className="text-[#b0b8c4]">Gibbs conjecture</span> and <span className="text-[#b0b8c4]">Ulam sequences</span>—felt 
                                     intimidating at first, and I had a lot to learn.
                                 </p>
                                 
@@ -658,7 +690,7 @@ function App() {
                                     href="https://math.colgate.edu/~integers/z102/z102.pdf" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#00d4ff] text-black font-semibold rounded-lg hover:bg-[#00d4ff]/80 transition-all hover:scale-105"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#b0b8c4] text-black font-semibold rounded-lg hover:bg-[#b0b8c4]/80 transition-all hover:scale-105"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -669,7 +701,7 @@ function App() {
                                     href="https://math.colgate.edu/~integers/z102/z102.pdf" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-6 py-3 border border-[#00d4ff] text-[#00d4ff] font-semibold rounded-lg hover:bg-[#00d4ff]/10 transition-all hover:scale-105"
+                                    className="inline-flex items-center gap-2 px-6 py-3 border border-[#b0b8c4] text-[#b0b8c4] font-semibold rounded-lg hover:bg-[#b0b8c4]/10 transition-all hover:scale-105"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -689,7 +721,7 @@ function App() {
                                 <p className="text-[#a0a0a0] text-sm">
                                     Digital and Computational Studies Department, Bates College
                                 </p>
-                                <p className="text-[#00d4ff]/70 text-sm mt-1">
+                                <p className="text-[#b0b8c4]/70 text-sm mt-1">
                                     Research Assistant — June 2025 – August 2025
                                 </p>
                             </div>
@@ -697,9 +729,9 @@ function App() {
                             {/* Personal Story */}
                             <div className="space-y-4 text-[#c0c0c0] leading-relaxed text-lg mb-8">
                                 <p>
-                                    During the winter of my sophomore year, the <span className="text-[#00d4ff]">Digital and Computational Studies</span> program 
+                                    During the winter of my sophomore year, the <span className="text-[#b0b8c4]">Digital and Computational Studies</span> program 
                                     at Bates was transitioning from a minor into a full major, and I was taking a web development 
-                                    course with <span className="text-[#00d4ff]">Professor Barry Lawson</span> right in the middle of that change. 
+                                    course with <span className="text-[#b0b8c4]">Professor Barry Lawson</span> right in the middle of that change. 
                                     The department was suddenly receiving a flood of questions from prospective and current students 
                                     about requirements, pathways, and course planning, and traditional advising methods were no longer enough.
                                 </p>
@@ -707,10 +739,10 @@ function App() {
                                 <p>
                                     After several brainstorming sessions, we decided to design a system that could answer these 
                                     questions automatically using the department's own materials. That summer, I worked as a 
-                                    Research Assistant to build a <span className="text-[#00d4ff]">Retrieval-Augmented Generation (RAG)</span> pipeline 
+                                    Research Assistant to build a <span className="text-[#b0b8c4]">Retrieval-Augmented Generation (RAG)</span> pipeline 
                                     that transformed over 5,000 institutional documents into a searchable knowledge base using 
-                                    <span className="text-[#00d4ff]"> vector embeddings</span>. I then deployed the system as a 
-                                    <span className="text-[#00d4ff]"> FastAPI microservice</span> so students could receive accurate, 
+                                    <span className="text-[#b0b8c4]"> vector embeddings</span>. I then deployed the system as a 
+                                    <span className="text-[#b0b8c4]"> FastAPI microservice</span> so students could receive accurate, 
                                     context-aware responses.
                                 </p>
                                 
@@ -722,7 +754,7 @@ function App() {
                                     href="https://github.com/PaulAdutwum" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#00d4ff] text-black font-semibold rounded-lg hover:bg-[#00d4ff]/80 transition-all hover:scale-105"
+                                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#b0b8c4] text-black font-semibold rounded-lg hover:bg-[#b0b8c4]/80 transition-all hover:scale-105"
                                 >
                                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -787,15 +819,15 @@ function App() {
                             {workExperiences.map((item, index) => (
                                 <motion.div
                                     key={item.id}
-                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.08 }}
                                     viewport={{ once: true }}
-                                    whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0, 212, 255, 0.08)' }}
+                                    whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(176, 184, 196, 0.08)' }}
                                 >
                                         <div className="flex items-start justify-between gap-4 mb-3">
-                                        <h3 className="text-lg md:text-xl font-bold text-[#00d4ff]">
+                                        <h3 className="text-lg md:text-xl font-bold text-[#b0b8c4]">
                                             {item.organization}
                                         </h3>
                                     </div>
@@ -806,7 +838,7 @@ function App() {
                                         {item.location}
                                     </p>
                                     {item.image && (
-                                        <div className="mt-4 w-16 h-16 rounded-lg overflow-hidden border border-[#00d4ff]/30">
+                                        <div className="mt-4 w-16 h-16 rounded-lg overflow-hidden border border-[#b0b8c4]/30">
                                             <img
                                                 src={item.image}
                                                 alt={`${item.organization} logo`}
@@ -830,11 +862,11 @@ function App() {
                                 {hackathons.map((item) => (
                                     <div
                                         key={item.id}
-                                        className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                        className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                     >
                                         <div className="flex flex-wrap items-center justify-between gap-3">
                                             <div>
-                                                <h4 className="text-lg font-bold text-[#00d4ff]">
+                                                <h4 className="text-lg font-bold text-[#b0b8c4]">
                                                     {item.organization}
                                                 </h4>
                                                 <p className="text-white font-medium">
@@ -874,15 +906,15 @@ function App() {
                             {awards.map((award, index) => (
                                 <motion.div
                                     key={award.id}
-                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.08 }}
                                     viewport={{ once: true }}
-                                    whileHover={{ y: -4, boxShadow: '0 10px 30px rgba(0, 212, 255, 0.08)' }}
+                                    whileHover={{ y: -4, boxShadow: '0 10px 30px rgba(176, 184, 196, 0.08)' }}
                                 >
                                     <div className="flex items-start justify-between gap-4 mb-3">
-                                        <h3 className="text-lg md:text-xl font-bold text-[#00d4ff]">
+                                        <h3 className="text-lg md:text-xl font-bold text-[#b0b8c4]">
                                             {award.title}
                                         </h3>
                                     </div>
@@ -914,25 +946,25 @@ function App() {
                         </h2>
                         
                         <div className="relative max-w-5xl mx-auto">
-                            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#00d4ff]/40 to-transparent" />
+                            <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#b0b8c4]/40 to-transparent" />
                             <div className="space-y-6 pl-10">
                                 {extracurricularsData.map((item, index) => (
                                     <motion.div
                                         key={item.id}
-                                        className="relative bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300"
+                                        className="relative bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                         initial={{ opacity: 0, y: 24 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.08 }}
                                         viewport={{ once: true }}
-                                        whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(0, 212, 255, 0.08)' }}
+                                        whileHover={{ y: -4, boxShadow: '0 12px 30px rgba(176, 184, 196, 0.08)' }}
                                     >
-                                        <div className="absolute -left-10 top-7 w-3 h-3 rounded-full bg-[#00d4ff] shadow-[0_0_12px_rgba(0,212,255,0.6)]" />
+                                        <div className="absolute -left-10 top-7 w-3 h-3 rounded-full bg-[#b0b8c4] shadow-[0_0_12px_rgba(176,184,196,0.6)]" />
                                         
                                         <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
-                                            <h3 className="text-lg font-bold text-[#00d4ff]">
+                                            <h3 className="text-lg font-bold text-[#b0b8c4]">
                                                 {item.title}
                                             </h3>
-                                            <span className="text-xs px-2.5 py-1 rounded-full border border-[#00d4ff]/40 text-[#00d4ff] bg-[#00d4ff]/10">
+                                            <span className="text-xs px-2.5 py-1 rounded-full border border-[#b0b8c4]/40 text-[#b0b8c4] bg-[#b0b8c4]/10">
                                                 {item.dates}
                                             </span>
                                         </div>
@@ -948,7 +980,7 @@ function App() {
                                         <ul className="space-y-2">
                                             {item.highlights.map((highlight, i) => (
                                                 <li key={i} className="text-[#a0a0a0] text-sm flex items-start gap-2">
-                                                    <span className="text-[#00d4ff] mt-1">•</span>
+                                                    <span className="text-[#b0b8c4] mt-1">•</span>
                                                     <span>{highlight}</span>
                                                 </li>
                                             ))}
@@ -957,63 +989,6 @@ function App() {
                                 ))}
                             </div>
                         </div>
-                    </motion.div>
-                </div>
-            </section>
-            
-            {/* Hobbies Section */}
-            <section ref={hobbiesRef} id="hobbies" className="py-16 bg-[#0a0a0a]">
-                <div className="container mx-auto px-4">
-                    <motion.div 
-                        className="max-w-4xl mx-auto"
-                        variants={sectionVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 gradient-text">
-                            Hobbies & Interests
-                        </h2>
-                        
-                        {/* Compact video grid */}
-                        <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
-                            {hobbies.map((hobby, index) => (
-                                <motion.div
-                                    key={hobby.id}
-                                    className="bg-[#1a1a1a] rounded-xl overflow-hidden border border-[#333] hover:border-[#00d4ff]/50 transition-all duration-300 group"
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ y: -5, scale: 1.02 }}
-                                >
-                                    {/* Video container - square aspect ratio */}
-                                    <div className="aspect-square overflow-hidden relative">
-                                        <video 
-                                            src={hobby.video}
-                                            className="w-full h-full object-cover"
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                        />
-                                        {/* Hover overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    </div>
-                                    
-                                    {/* Compact label */}
-                                    <div className="p-2 sm:p-3 text-center">
-                                        <div className="flex items-center justify-center gap-1.5 sm:gap-2">
-                                            <span className="text-lg sm:text-xl">{hobby.icon}</span>
-                                            <h3 className="text-xs sm:text-sm font-medium text-[#00d4ff]">
-                                                {hobby.title}
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                        
                     </motion.div>
                 </div>
             </section>
@@ -1048,7 +1023,7 @@ function App() {
                                             type="text"
                                             name="name"
                                             placeholder="Your name"
-                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff]"
+                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
                                             required
                                         />
                                     </div>
@@ -1058,7 +1033,7 @@ function App() {
                                             type="email"
                                             name="email"
                                             placeholder="you@example.com"
-                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff]"
+                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
                                             required
                                         />
                                     </div>
@@ -1070,7 +1045,7 @@ function App() {
                                         type="text"
                                         name="subject"
                                         placeholder="What is this about?"
-                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff]"
+                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
                                     />
                                 </div>
                                 
@@ -1080,7 +1055,7 @@ function App() {
                                         name="message"
                                         rows={6}
                                         placeholder="Write your message..."
-                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#00d4ff] resize-none"
+                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4] resize-none"
                                         required
                                     />
                                 </div>
@@ -1089,7 +1064,7 @@ function App() {
                                     <button
                                         type="submit"
                                         disabled={contactStatus === 'sending'}
-                                        className="bg-[#00d4ff] text-[#0a0a0a] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                        className="bg-[#b0b8c4] text-[#0a0a0a] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
                                         {contactStatus === 'sending' ? 'Sending...' : 'Send Message'}
                                     </button>

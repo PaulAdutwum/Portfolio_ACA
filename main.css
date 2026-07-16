@@ -3,7 +3,7 @@
 :root {
     --bg-primary: #050505;
     --bg-secondary: #0f0f0f;
-    --accent-blue: #3ab8e5;
+    --accent-blue: #b0b8c4;
     --accent-gold: #caa23a;
     --text-primary: #ffffff;
     --text-secondary: #8b949e;
@@ -18,119 +18,23 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Courier Prime', 'Courier New', Courier, monospace;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Light theme overrides */
-[data-theme="light"] body {
-    background-color: #f6f7fb;
-    color: #0a0a0a;
-}
-
-[data-theme="light"] .nav-blur {
-    background: rgba(246, 247, 251, 0.85);
-}
-
-[data-theme="light"] .gradient-text {
-    background: linear-gradient(135deg, #0066ff, #ffb100);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-[data-theme="light"] .card-hover:hover {
-    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
-}
-
-[data-theme="light"] .side-signal {
-    opacity: 0.4;
-    border-color: rgba(0, 102, 255, 0.08);
-}
-
-/* Hero theme overrides */
 .hero-section {
     background: #050505;
 }
 
 .hero-gradient {
-    background: radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.07) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(0, 212, 255, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 20, 40, 1) 0%, #050505 70%);
-}
-
-[data-theme="light"] .hero-section {
-    background: #f6f7fb;
-}
-
-[data-theme="light"] .hero-gradient {
-    background: radial-gradient(ellipse at 20% 20%, rgba(0, 102, 255, 0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(255, 177, 0, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(246, 247, 251, 1) 0%, #f6f7fb 70%);
-}
-
-[data-theme="dark"] .bg-\[\#0a0a0a\] {
-    background-color: #050505 !important;
-}
-
-[data-theme="dark"] .bg-\[\#1a1a1a\] {
-    background-color: #0f0f0f !important;
-}
-
-[data-theme="dark"] .bg-\[\#0f0f0f\],
-[data-theme="dark"] .bg-\[\#0d1117\] {
-    background-color: #0b0b0b !important;
-}
-
-/* Dimmer accent text in dark theme */
-[data-theme="dark"] .text-\[\#00d4ff\] {
-    color: #3ab8e5 !important;
-}
-
-[data-theme="dark"] .text-\[\#ffd700\] {
-    color: #caa23a !important;
-}
-
-[data-theme="dark"] .text-\[\#00ff88\] {
-    color: #2fbf71 !important;
-}
-
-[data-theme="light"] .bg-\[\#0a0a0a\],
-[data-theme="light"] .bg-\[\#1a1a1a\],
-[data-theme="light"] .bg-\[\#0f0f0f\],
-[data-theme="light"] .bg-\[\#0d1117\] {
-    background-color: #ffffff !important;
-}
-
-[data-theme="light"] .text-white {
-    color: #0a0a0a !important;
-}
-
-[data-theme="light"] .text-\[\#a0a0a0\],
-[data-theme="light"] .text-\[\#c0c0c0\],
-[data-theme="light"] .text-\[\#8b949e\],
-[data-theme="light"] .text-\[\#6e7681\],
-[data-theme="light"] .text-\[\#888\],
-[data-theme="light"] .text-\[\#666\] {
-    color: #4b5563 !important;
-}
-
-[data-theme="light"] .border-\[\#333\],
-[data-theme="light"] .border-\[\#30363d\] {
-    border-color: #e5e7eb !important;
-}
-
-[data-theme="light"] .bg-\[\#00d4ff\]\/10,
-[data-theme="light"] .bg-\[\#00d4ff\]\/20,
-[data-theme="light"] .bg-\[\#00d4ff\]\/30 {
-    background-color: rgba(0, 102, 255, 0.08) !important;
+    background: radial-gradient(ellipse at 50% 50%, rgba(10, 10, 10, 0) 0%, #050505 78%);
 }
 
 .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Courier Prime', 'Courier New', Courier, monospace;
 }
 
 .gradient-text {
@@ -141,12 +45,12 @@ body {
 }
 
 .glow-effect {
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 20px rgba(176, 184, 196, 0.3);
     transition: all 0.3s ease;
 }
 
 .glow-effect:hover {
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 30px rgba(176, 184, 196, 0.5);
     transform: translateY(-2px);
 }
 
@@ -157,7 +61,7 @@ body {
 
 .card-hover:hover {
     transform: rotateY(5deg) rotateX(5deg) translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(176, 184, 196, 0.2);
 }
 
 .section-padding {
@@ -176,7 +80,7 @@ body {
 }
 
 .hero-bg {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 215, 0, 0.1));
+    background: linear-gradient(135deg, rgba(176, 184, 196, 0.1), rgba(255, 215, 0, 0.1));
 }
 
 .masonry-grid {
@@ -207,8 +111,8 @@ body {
 }
 
 .tech-badge {
-    background: linear-gradient(135deg, var(--bg-secondary), rgba(0, 212, 255, 0.1));
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    background: linear-gradient(135deg, var(--bg-secondary), rgba(176, 184, 196, 0.1));
+    border: 1px solid rgba(176, 184, 196, 0.3);
 }
 
 .modal-backdrop {
@@ -302,14 +206,14 @@ body {
 
 .side-signal-left {
     left: 0;
-    border-right: 1px solid rgba(0, 212, 255, 0.08);
+    border-right: 1px solid rgba(176, 184, 196, 0.08);
     mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
 }
 
 .side-signal-right {
     right: 0;
-    border-left: 1px solid rgba(0, 212, 255, 0.08);
+    border-left: 1px solid rgba(176, 184, 196, 0.08);
     transform: scaleX(-1);
     mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
     -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
@@ -392,7 +296,7 @@ a:focus {
 
 .social-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.25);
+    box-shadow: 0 8px 25px rgba(176, 184, 196, 0.25);
 }
 
 .social-btn:active {

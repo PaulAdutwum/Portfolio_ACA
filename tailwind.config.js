@@ -11,7 +11,7 @@ export default {
       colors: {
         'cyber-dark': '#0a0a0a',
         'cyber-gray': '#1a1a1a',
-        'cyber-blue': '#00d4ff',
+        'cyber-blue': '#b0b8c4',
         'cyber-gold': '#ffd700',
         'cyber-green': '#00ff88',
       },
@@ -26,8 +26,8 @@ export default {
           '100%': { transform: 'translateY(100vh)' },
         },
         'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(0, 212, 255, 0.5)' },
-          '50%': { boxShadow: '0 0 40px rgba(0, 212, 255, 0.8)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(176, 184, 196, 0.5)' },
+          '50%': { boxShadow: '0 0 40px rgba(176, 184, 196, 0.8)' },
         },
         'float': {
           '0%, 100%': { transform: 'translateY(0)' },

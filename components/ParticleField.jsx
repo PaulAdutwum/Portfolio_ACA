@@ -23,7 +23,7 @@ function ParticleSystem({ count = 5000 }) {
     const colors = useMemo(() => {
         const cols = new Float32Array(count * 3);
         const colorPalette = [
-            new THREE.Color('#00d4ff'), // Cyber blue
+            new THREE.Color('#b0b8c4'), // Cyber blue
             new THREE.Color('#ffd700'), // Gold
             new THREE.Color('#00ff88'), // Green
         ];
@@ -82,7 +82,7 @@ function FloatingGeometry() {
         <mesh ref={meshRef} position={[0, 0, -5]}>
             <icosahedronGeometry args={[2, 1]} />
             <meshBasicMaterial
-                color="#00d4ff"
+                color="#b0b8c4"
                 wireframe
                 transparent
                 opacity={0.3}
