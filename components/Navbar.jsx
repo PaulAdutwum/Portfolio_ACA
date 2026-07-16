@@ -76,7 +76,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
 
                     {/* Mobile Menu Button - Enhanced visibility */}
                     <motion.button
-                        className="md:hidden p-2.5 rounded-lg bg-[#0a0a0a]/90 backdrop-blur-sm border border-[#b0b8c4]/50 shadow-lg shadow-[#b0b8c4]/20"
+                        className="md:hidden p-2.5 rounded-lg bg-[#050505]/90 backdrop-blur-sm border border-[#b0b8c4]/50 shadow-lg shadow-[#b0b8c4]/20"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         whileTap={{ scale: 0.95 }}
                         whileHover={{ borderColor: '#b0b8c4', boxShadow: '0 0 20px rgba(176, 184, 196, 0.3)' }}
@@ -100,7 +100,7 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                 <AnimatePresence>
                     {isMobileMenuOpen && (
                         <motion.div
-                            className="md:hidden py-4 mt-2 rounded-xl bg-[#0a0a0a]/95 backdrop-blur-md border border-[#333] shadow-xl shadow-black/50"
+                            className="md:hidden py-4 mt-2 rounded-xl bg-[#050505]/95 backdrop-blur-md border border-[#333] shadow-xl shadow-black/50"
                             initial={{ opacity: 0, height: 0, y: -10 }}
                             animate={{ opacity: 1, height: 'auto', y: 0 }}
                             exit={{ opacity: 0, height: 0, y: -10 }}
@@ -112,8 +112,8 @@ const Navbar = ({ activeSection, scrollToSection }) => {
                                         key={item.id}
                                         onClick={() => handleNavClick(item.id)}
                                         className={`block w-full text-left px-4 py-3 rounded-lg transition-all font-medium ${activeSection === item.id
-                                            ? 'bg-[#b0b8c4] text-[#0a0a0a]'
-                                            : 'text-white hover:bg-[#1a1a1a] hover:text-[#b0b8c4]'
+                                            ? 'bg-[#b0b8c4] text-[#050505]'
+                                            : 'text-white hover:bg-[#0a0a0a] hover:text-[#b0b8c4]'
                                             }`}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}

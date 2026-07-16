@@ -7,7 +7,7 @@ const ArchDiagram = ({ flow }) => (
     <div className="px-5 pt-6 pb-2 flex flex-col items-stretch">
         {flow.map((node, i) => (
             <div key={node} className="flex flex-col items-center">
-                <div className="w-full text-center text-[10.5px] sm:text-[11px] tracking-wide px-3 py-2 rounded border border-[#b0b8c4]/25 bg-[#0f0f0f] text-[#b0b8c4] font-mono transition-colors duration-300 group-hover:border-[#b0b8c4]/60 group-hover:text-white">
+                <div className="w-full text-center text-[10.5px] sm:text-[11px] tracking-wide px-3 py-2 rounded border border-[#b0b8c4]/25 bg-[#0a0a0a] text-[#b0b8c4] font-mono transition-colors duration-300 group-hover:border-[#b0b8c4]/60 group-hover:text-white">
                     {node}
                 </div>
                 {i < flow.length - 1 && (
@@ -32,13 +32,13 @@ const ProjectCard = ({ project }) => {
 
     return (
         <motion.div
-            className="group bg-[#1a1a1a] rounded-lg overflow-hidden card-hover relative border border-transparent hover:border-[#b0b8c4]/20 transition-colors duration-300"
+            className="group bg-[#0a0a0a] rounded-lg overflow-hidden card-hover relative border border-transparent hover:border-[#b0b8c4]/20 transition-colors duration-300"
             variants={cardVariants}
             initial="initial"
             animate="animate"
         >
             {project.featured && (
-                <div className="absolute top-4 right-4 z-10 bg-[#ffd700] text-[#0a0a0a] px-3 py-1 rounded-full text-xs font-bold font-mono">
+                <div className="absolute top-4 right-4 z-10 bg-[#ffd700] text-[#050505] px-3 py-1 rounded-full text-xs font-bold font-mono">
                     Featured
                 </div>
             )}
@@ -58,7 +58,7 @@ const ProjectCard = ({ project }) => {
                 <button
                     onClick={() => setExpanded((v) => !v)}
                     aria-expanded={expanded}
-                    className="w-full flex items-center justify-between gap-2 bg-[#0f0f0f] hover:bg-[#151515] border border-[#333] hover:border-[#b0b8c4]/40 text-[#b0b8c4] px-4 py-2 rounded-lg text-sm font-medium font-mono transition-colors duration-300"
+                    className="w-full flex items-center justify-between gap-2 bg-[#0a0a0a] hover:bg-[#151515] border border-[#333] hover:border-[#b0b8c4]/40 text-[#b0b8c4] px-4 py-2 rounded-lg text-sm font-medium font-mono transition-colors duration-300"
                 >
                     <span>{expanded ? 'Hide Details' : 'View Details'}</span>
                     <motion.span
@@ -85,7 +85,7 @@ const ProjectCard = ({ project }) => {
                                 </p>
 
                                 <div>
-                                    <h4 className="text-xs uppercase tracking-widest text-[#ffd700] font-mono mb-2">
+                                    <h4 className="text-xs uppercase tracking-widest text-[#caa23a] font-mono mb-2">
                                         Use Case
                                     </h4>
                                     <p className="text-[#a0a0a0] text-sm leading-relaxed font-mono">
@@ -94,7 +94,7 @@ const ProjectCard = ({ project }) => {
                                 </div>
 
                                 <div>
-                                    <h4 className="text-xs uppercase tracking-widest text-[#ffd700] font-mono mb-2">
+                                    <h4 className="text-xs uppercase tracking-widest text-[#caa23a] font-mono mb-2">
                                         Highlights
                                     </h4>
                                     <ul className="space-y-1.5">
