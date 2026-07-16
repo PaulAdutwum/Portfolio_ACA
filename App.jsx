@@ -502,7 +502,7 @@ function App() {
     }, []);
     
     return (
-        <div className="min-h-screen bg-[#0a0a0a] text-white relative">
+        <div className="min-h-screen bg-[#050505] text-white relative">
             {/* Subtle animated side signals */}
             <div
                 className="side-signal side-signal-left"
@@ -520,7 +520,7 @@ function App() {
             />
             {/* Dynamic Animated Backgrounds - Only show on desktop for performance */}
             {!isMobile && (
-                <Suspense fallback={<div className="fixed inset-0 bg-[#0a0a0a]" />}>
+                <Suspense fallback={<div className="fixed inset-0 bg-[#050505]" />}>
                     {backgroundMode === 'matrix' && <MatrixRain opacity={0.08} />}
                     {backgroundMode === 'particles' && <ParticleField />}
                     {(backgroundMode === 'orbs' || backgroundMode === 'mesh' || backgroundMode === 'aurora') && (
@@ -543,7 +543,7 @@ function App() {
             </section>
             
             {/* About Section */}
-            <section ref={aboutRef} id="about" className="py-20 bg-[#1a1a1a]">
+            <section ref={aboutRef} id="about" className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div 
                         className="max-w-6xl mx-auto"
@@ -618,7 +618,7 @@ function App() {
             </section>
             
             {/* Research Section */}
-            <section ref={researchRef} id="research" className="py-20 bg-[#0a0a0a]">
+            <section ref={researchRef} id="research" className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div 
                         className="max-w-6xl mx-auto"
@@ -631,7 +631,7 @@ function App() {
                             Research
                         </h2>
                         
-                        <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 border border-[#333]">
+                        <div className="bg-[#0a0a0a] rounded-2xl p-8 md:p-12 border border-[#333]">
                             {/* Paper Title */}
                             <div className="mb-8">
                                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
@@ -712,7 +712,7 @@ function App() {
                         </div>
                         
                         {/* RAG Research Project */}
-                        <div className="bg-[#1a1a1a] rounded-2xl p-8 md:p-12 border border-[#333] mt-8">
+                        <div className="bg-[#0a0a0a] rounded-2xl p-8 md:p-12 border border-[#333] mt-8">
                             {/* Project Title */}
                             <div className="mb-8">
                                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
@@ -768,7 +768,7 @@ function App() {
             </section>
             
             {/* Projects Section */}
-            <section ref={projectsRef} id="projects" className="py-20 bg-[#1a1a1a]">
+            <section ref={projectsRef} id="projects" className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div 
                         className="max-w-6xl mx-auto"
@@ -799,7 +799,7 @@ function App() {
             </section>
             
             {/* Experience Section */}
-            <section className="py-20 bg-[#0a0a0a]">
+            <section className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div 
                         className="max-w-6xl mx-auto"
@@ -819,7 +819,7 @@ function App() {
                             {workExperiences.map((item, index) => (
                                 <motion.div
                                     key={item.id}
-                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
+                                    className="bg-[#0a0a0a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.08 }}
@@ -862,7 +862,7 @@ function App() {
                                 {hackathons.map((item) => (
                                     <div
                                         key={item.id}
-                                        className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
+                                        className="bg-[#0a0a0a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                     >
                                         <div className="flex flex-wrap items-center justify-between gap-3">
                                             <div>
@@ -886,7 +886,7 @@ function App() {
             </section>
             
             {/* Awards Section */}
-            <section ref={awardsRef} id="awards" className="py-20 bg-[#0a0a0a]">
+            <section ref={awardsRef} id="awards" className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div
                         className="max-w-6xl mx-auto"
@@ -906,7 +906,7 @@ function App() {
                             {awards.map((award, index) => (
                                 <motion.div
                                     key={award.id}
-                                    className="bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
+                                    className="bg-[#0a0a0a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: index * 0.08 }}
@@ -932,7 +932,7 @@ function App() {
             </section>
             
             {/* Extracurriculars Section */}
-            <section ref={communityRef} id="community" className="py-20 bg-[#0a0a0a]">
+            <section ref={communityRef} id="community" className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div 
                         className="max-w-6xl mx-auto"
@@ -951,7 +951,7 @@ function App() {
                                 {extracurricularsData.map((item, index) => (
                                     <motion.div
                                         key={item.id}
-                                        className="relative bg-[#1a1a1a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
+                                        className="relative bg-[#0a0a0a] rounded-xl p-6 border border-[#333] hover:border-[#b0b8c4]/50 transition-all duration-300"
                                         initial={{ opacity: 0, y: 24 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         transition={{ delay: index * 0.08 }}
@@ -994,7 +994,7 @@ function App() {
             </section>
             
             {/* Contact Section */}
-            <section ref={contactRef} id="contact" className="py-20 bg-[#1a1a1a]">
+            <section ref={contactRef} id="contact" className="py-20 bg-[#050505]">
                 <div className="container mx-auto px-4">
                     <motion.div 
                         className="max-w-6xl mx-auto"
@@ -1013,7 +1013,7 @@ function App() {
                         <div className="max-w-3xl mx-auto">
                             <form
                                 onSubmit={handleContactSubmit}
-                                className="bg-[#0f0f0f] rounded-2xl p-6 md:p-8 border border-[#333]"
+                                className="bg-[#0a0a0a] rounded-2xl p-6 md:p-8 border border-[#333]"
                             >
                                 <input type="hidden" name="_subject" value="New contact from Portfolio" />
                                 <div className="grid md:grid-cols-2 gap-6">
@@ -1023,7 +1023,7 @@ function App() {
                                             type="text"
                                             name="name"
                                             placeholder="Your name"
-                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
+                                            className="w-full bg-[#0a0a0a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
                                             required
                                         />
                                     </div>
@@ -1033,7 +1033,7 @@ function App() {
                                             type="email"
                                             name="email"
                                             placeholder="you@example.com"
-                                            className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
+                                            className="w-full bg-[#0a0a0a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
                                             required
                                         />
                                     </div>
@@ -1045,7 +1045,7 @@ function App() {
                                         type="text"
                                         name="subject"
                                         placeholder="What is this about?"
-                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
+                                        className="w-full bg-[#0a0a0a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4]"
                                     />
                                 </div>
                                 
@@ -1055,7 +1055,7 @@ function App() {
                                         name="message"
                                         rows={6}
                                         placeholder="Write your message..."
-                                        className="w-full bg-[#1a1a1a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4] resize-none"
+                                        className="w-full bg-[#0a0a0a] text-white rounded-lg border border-[#333] px-4 py-3 focus:outline-none focus:border-[#b0b8c4] resize-none"
                                         required
                                     />
                                 </div>
@@ -1064,7 +1064,7 @@ function App() {
                                     <button
                                         type="submit"
                                         disabled={contactStatus === 'sending'}
-                                        className="bg-[#b0b8c4] text-[#0a0a0a] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                        className="bg-[#b0b8c4] text-[#050505] px-8 py-3 rounded-lg font-semibold hover:bg-[#00b8e6] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
                                         {contactStatus === 'sending' ? 'Sending...' : 'Send Message'}
                                     </button>

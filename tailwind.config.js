@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cyber-dark': '#0a0a0a',
-        'cyber-gray': '#1a1a1a',
+        'cyber-dark': '#050505',
+        'cyber-gray': '#0a0a0a',
         'cyber-blue': '#b0b8c4',
         'cyber-gold': '#ffd700',
         'cyber-green': '#00ff88',

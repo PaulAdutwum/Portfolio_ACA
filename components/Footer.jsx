@@ -56,7 +56,7 @@ const Footer = () => {
     
     return (
         <motion.footer 
-            className="relative bg-gradient-to-b from-[#0a0a0a] via-[#0d1117] to-[#0a0a0a] py-16 overflow-hidden"
+            className="relative bg-gradient-to-b from-[#050505] via-[#0d1117] to-[#050505] py-16 overflow-hidden"
             variants={footerVariants}
             initial="hidden"
             whileInView="visible"
@@ -76,7 +76,7 @@ const Footer = () => {
                         variants={footerVariants}
                     >
                         <p className="text-[#8b949e] text-lg tracking-wide">
-                            © 2025{' '}
+                            © {new Date().getFullYear()}{' '}
                             <span className="text-[#b0b8c4] font-semibold hover:text-[#ffd700] transition-colors cursor-pointer">
                                 Paul Adutwum
                             </span>

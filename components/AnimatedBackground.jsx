@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const AnimatedBackground = ({ variant = 'orbs' }) => {
     if (variant === 'orbs') {
         return (
-            <div className="fixed inset-0 z-0 overflow-hidden bg-[#0a0a0a]">
+            <div className="fixed inset-0 z-0 overflow-hidden bg-[#050505]">
                 {/* Animated gradient orbs */}
                 <motion.div
                     className="absolute w-[600px] h-[600px] rounded-full"
@@ -85,7 +85,7 @@ const AnimatedBackground = ({ variant = 'orbs' }) => {
                             radial-gradient(at 0% 100%, rgba(255, 215, 0, 0.15) 0px, transparent 50%),
                             radial-gradient(at 80% 100%, rgba(0, 255, 136, 0.1) 0px, transparent 50%),
                             radial-gradient(at 0% 0%, rgba(176, 184, 196, 0.1) 0px, transparent 50%),
-                            #0a0a0a
+                            #050505
                         `,
                     }}
                 />
@@ -112,15 +112,15 @@ const AnimatedBackground = ({ variant = 'orbs' }) => {
 
     // Aurora variant
     return (
-        <div className="fixed inset-0 z-0 overflow-hidden bg-[#0a0a0a]">
+        <div className="fixed inset-0 z-0 overflow-hidden bg-[#050505]">
             <motion.div
                 className="absolute inset-0"
                 animate={{
                     background: [
-                        'linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 25%, #0a0a0a 50%, #1a2e1a 75%, #0a0a0a 100%)',
-                        'linear-gradient(90deg, #0a0a0a 0%, #2e1a1a 25%, #0a0a0a 50%, #1a1a2e 75%, #0a0a0a 100%)',
-                        'linear-gradient(135deg, #0a0a0a 0%, #1a2e1a 25%, #0a0a0a 50%, #2e1a1a 75%, #0a0a0a 100%)',
-                        'linear-gradient(45deg, #0a0a0a 0%, #1a1a2e 25%, #0a0a0a 50%, #1a2e1a 75%, #0a0a0a 100%)',
+                        'linear-gradient(45deg, #050505 0%, #1a1a2e 25%, #050505 50%, #1a2e1a 75%, #050505 100%)',
+                        'linear-gradient(90deg, #050505 0%, #2e1a1a 25%, #050505 50%, #1a1a2e 75%, #050505 100%)',
+                        'linear-gradient(135deg, #050505 0%, #1a2e1a 25%, #050505 50%, #2e1a1a 75%, #050505 100%)',
+                        'linear-gradient(45deg, #050505 0%, #1a1a2e 25%, #050505 50%, #1a2e1a 75%, #050505 100%)',
                     ],
                 }}
                 transition={{

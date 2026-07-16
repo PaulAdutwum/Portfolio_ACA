@@ -16,7 +16,7 @@ const AnimatedSocialIcon = ({ icon, label, href, color, delay }) => {
         >
             {/* Icon container */}
             <motion.div
-                className="relative w-12 h-12 rounded-xl flex items-center justify-center bg-[#1a1a1a]/80 backdrop-blur-sm"
+                className="relative w-12 h-12 rounded-xl flex items-center justify-center bg-[#0a0a0a]/80 backdrop-blur-sm"
                 style={{
                     border: `1px solid ${color}40`,
                 }}
