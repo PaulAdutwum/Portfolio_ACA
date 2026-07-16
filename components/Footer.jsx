@@ -56,7 +56,7 @@ const Footer = () => {
     
     return (
         <motion.footer 
-            className="relative bg-gradient-to-b from-[#050505] via-[#0d1117] to-[#050505] py-16 overflow-hidden"
+            className="relative bg-[#050505] py-16 overflow-hidden"
             variants={footerVariants}
             initial="hidden"
             whileInView="visible"
