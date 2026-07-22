@@ -11,7 +11,7 @@ const AnimatedBackground = lazy(() => import('./components/AnimatedBackground'))
 const ParticleField = lazy(() => import('./components/ParticleField'));
 
 // Import generated visual assets
-import portraitPlaceholder from './assets/LexisProfile.jpeg';
+import portraitPlaceholder from './assets/new_profile.jpg';
 import handshakePreview from './assets/handshake.png';
 
 // Animated Name Component
